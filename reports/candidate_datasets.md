@@ -14,14 +14,14 @@ momentum, **G4** cross-platform popularity for transfer.
 
 ## Tier 1 — highest leverage (raw media + engagement → directly improve Model A)
 
-### 1. SnapUGC  ⭐ best single fit (G1 + G2)
+### 1. SnapUGC — best single fit (G1 + G2)
 - Snapchat Spotlight short videos, 5–60 s, **raw .mp4 with audio**; ~90k (ECCV 2024) → 120,651 (VQualA 2025: 106k/6k/8.5k).
 - Labels: **NAWP** (normalized average watch percentage) + **ECR** (engagement continuation ratio) — genuine watch-time/retention outcomes.
 - Why it matters: one of the *very few* sets giving **both** raw pixels+audio (incl. first-seconds hook) **and** real retention labels — exactly our two top gaps.
 - Use: pretrain a hook/retention encoder (raw frames+audio → NAWP/ECR), transfer/fine-tune to breakout. Single-platform; no G3/G4. License: no explicit file (Apache-2.0 badge on code) — confirm before redistribution.
 - `https://github.com/dasongli1/SnapUGC_Engagement`
 
-### 2. MicroLens-100K / -1M  ⭐ (G1; named in the task brief)
+### 2. MicroLens-100K / -1M (G1; named in the task brief)
 - Content micro-video set: **raw MP4 + extracted audio + cover image + title + comments + pre-extracted multimodal embeddings**; like/view popularity (static snapshot).
 - 100K: 19,738 videos / 100k users / 719k interactions; full 1M: ~1M videos.
 - Use: pretrain the content encoder on content→popularity, then transfer; or as an auxiliary multimodal head. **No watch-time (G2), no trend (G3).** Domain shift: unnamed platform, videos ~100–400 s (much longer than TikTok hooks).
@@ -30,7 +30,7 @@ momentum, **G4** cross-platform popularity for transfer.
 
 ## Tier 2 — watch-time / completion pretraining (G2; post-exposure → transfer only)
 
-### 3. KuaiRand + KuaiRec  ⭐ gold standard for completion (G2, partial G3)
+### 3. KuaiRand + KuaiRec — gold standard for completion (G2, partial G3)
 - Kuaishou interaction logs. **KuaiRand**: `play_time_ms` + `duration_ms` (→ completion ratio), `long_view`/`valid_play`/`complete_play`, 12 feedback signals, **+1.19M random-exposure (unbiased) impressions**. **KuaiRec**: `watch_ratio` core label + `item_daily_features` (per-video daily counts ≈ coarse momentum, weak G3).
 - Use: pretrain a watch-time/completion head; confirm completion is the dominant missing signal. **No raw media (G1).** Chinese-platform OOD; CC-BY vs CC-BY-SA discrepancy to resolve.
 - `https://zenodo.org/records/10439422` (KuaiRand) · `https://kuairec.com` (KuaiRec)

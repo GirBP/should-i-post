@@ -34,7 +34,7 @@ The `.joblib` models were pickled with scikit-learn 1.9.x; Heroku installs the l
 mismatch, re-save the two models under the deployed scikit-learn version
 (`experiments/build_heroku_models.py` in the main repo) and copy them into `models/`.
 
-## What is NOT here (by design)
+## What is not here (by design)
 Live video-file / URL analysis (SigLIP/CLAP/Whisper) is intentionally excluded — it needs a
 multi-GB stack and 60–180 s per video, which exceeds Heroku's slug limit and 30 s request timeout.
 Run that path locally via the main repo's `./start.sh`, or on a separate GPU service.

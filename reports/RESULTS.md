@@ -81,7 +81,7 @@ The ceiling is *information*, not *model* (`reports/optuna_best.json`, `reports/
 > information-ceiling conclusion.
 
 **Methodological note (honest):** the *staged* ablation (`reports/ablation_A.csv`) added
-target-encoded topic/music/hashtag **priors early, and they HURT LOCO** (they overfit and do not
+target-encoded topic/music/hashtag **priors early, and they hurt LOCO** (they overfit and do not
 transfer across creators), depressing every later stage. The clean per-block view (text encoders
 add-one + best-A above) is the right read; the staged path is reported as-is with this caveat.
 

@@ -50,7 +50,7 @@ external data would be required to raise the ceiling.
 Every figure and number below is read from a committed artifact under reports/.
 """)
 
-# audit callout (kept; phrased without decorative markup)
+# post-audit correction callout
 md("""
 > Post-audit correction. An independent audit identified a temporal lookahead leak: author-history,
 > recency and creator-fit features aggregated prior videos whose horizon-day labels were not yet

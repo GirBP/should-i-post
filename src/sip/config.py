@@ -28,7 +28,7 @@ EXPLOG = REPORTS / "experiments_log.md"
 #   label fame-neutral (the creator's personal baseline is removed) and is the
 #   exact definition behind the established §1 numbers, so results stay comparable.
 # Note: the per-creator median is a *label normalisation* (defining what counts as
-# success for THIS creator), not a predictive feature, so it is not a feature leak.
+# success for that creator), not a predictive feature, so it is not a feature leak.
 H = 14                                           # horizon in days (validate {7,10,14,21})
 H_GRID = (7, 10, 14, 21)
 MIN_PLAY = 50                                    # eligibility floor on views@H
@@ -47,7 +47,7 @@ CONFORMAL_ALPHA = 0.10                           # target abstention error rate
 
 # ---------------------------------------------------------------- columns
 # Raw lingbow columns retained in the canonical frame (pre-publication content
-# + ids + raw text for fold-safe encoders).  Engagement counters are NOT here;
+# + ids + raw text for fold-safe encoders). Engagement counters are excluded;
 # they enter only as explicit day-1 (Model B) features built in sip.data.
 VIDEO_KEEP = [
     "video_id", "author_id", "create_time", "create_date", "duration", "ratio",

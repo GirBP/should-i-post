@@ -24,7 +24,7 @@ SV=[f"sv{i}" for i in range(60)]
 E=D[SV].values.astype(np.float32); E=E/ (np.linalg.norm(E,axis=1,keepdims=True)+1e-8)   # L2-норма
 log(f"завантажено {len(D)} відео")
 
-# creator-fit: косинус до центроїда СТРОГО ранніших переможців того ж автора
+# creator-fit: косинус до центроїда строго ранніших переможців того ж автора
 D=D.reset_index(drop=False).rename(columns={"index":"video_id"}) if "video_id" not in D.columns else D.reset_index(drop=True)
 order=np.argsort(D["create_dt"].values.astype("datetime64[ns]"))
 auth=D["author_id"].values; y=D["y"].values
@@ -36,7 +36,7 @@ for i in order:
     if cnts[a]>0:
         c=sums[a]/cnts[a]; c=c/(np.linalg.norm(c)+1e-8)
         fit[i]=float(E[i]@c); nprev[i]=cnts[a]
-    if y[i]==1:                     # додаємо ПІСЛЯ оцінки → лише минуле
+    if y[i]==1:                     # додаємо після оцінки, щоб рахувати лише минуле
         sums[a]+=E[i]; cnts[a]+=1
 D["creator_fit"]=fit; D["n_prior_wins"]=np.log1p(nprev)
 log(f"creator-fit пораховано (частка з історією: {(nprev>0).mean():.2f})")

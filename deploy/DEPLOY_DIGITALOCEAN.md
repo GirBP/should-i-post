@@ -12,10 +12,10 @@ product: manual entry **plus** live video-file / URL analysis with the multimoda
 
 | | Droplet (recommended) | App Platform (PaaS) |
 |---|---|---|
-| Long requests (60–120 s video) | ✅ no proxy timeout (we set 300 s) | ⚠️ platform request timeout — a sync video call is risky |
-| Image / disk size | ✅ 25–80 GB disk, image size irrelevant | ✅ Docker image (large ok) |
-| RAM for torch warmup | ✅ pick 4–8 GB | ⚠️ cheap tiers 512 MB–1 GB are too small |
-| GPU | optional GPU Droplet | ❌ none |
+| Long requests (60–120 s video) | no proxy timeout (we set 300 s) | platform request timeout — a sync video call is risky |
+| Image / disk size | 25–80 GB disk, image size irrelevant | Docker image (large ok) |
+| RAM for torch warmup | pick 4–8 GB | cheap tiers 512 MB–1 GB are too small |
+| GPU | optional GPU Droplet | none |
 | Ops | you run Docker + Caddy (scripted below) | fully managed |
 
 Droplet wins for the video path; App Platform is fine only if you drop live video or move it to a
