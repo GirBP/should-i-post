@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ShouldIPost? — pre-publication TikTok success, honestly measured</title>
+<style>
+  :root { --fg:#161616; --mut:#6a6a6a; --line:#e7e7e7; --bg:#fbfbfa; --green:#1a9850; --red:#d73027;
+          --amber:#e08a00; --acc:#185fa5; --card:#fff; }
+  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,Segoe UI,Roboto,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:780px;margin:0 auto;padding:40px 20px 72px;}
+  h1{font-size:32px;margin:0 0 6px;letter-spacing:-.01em;} h2{font-size:20px;margin:34px 0 10px;}
+  .sub{color:var(--mut);font-size:17px;margin:0 0 8px;}
+  .pills a{display:inline-block;margin:10px 8px 0 0;padding:7px 13px;border:1px solid var(--line);
+    border-radius:999px;text-decoration:none;color:var(--fg);font-size:14px;background:#fff;}
+  .pills a:hover{border-color:var(--acc);color:var(--acc);}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .stat .n{font-size:25px;font-weight:600;} .stat .l{color:var(--mut);font-size:13.5px;}
+  p{font-size:16px;} .mut{color:var(--mut);} code{background:#f0f0ef;padding:1px 5px;border-radius:4px;font-size:13px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:14px 0;}
+  label{display:block;font-weight:500;margin:12px 0 4px;font-size:14px;}
+  textarea,input[type=number],input[type=text]{width:100%;padding:10px;border:1px solid var(--line);
+    border-radius:8px;font-size:15px;font-family:inherit;} textarea{min-height:74px;resize:vertical;}
+  .row{display:flex;gap:12px;} .row>div{flex:1;} input[type=range]{width:100%;}
+  button{margin-top:14px;background:var(--fg);color:#fff;border:0;border-radius:8px;padding:11px 18px;font-size:15px;cursor:pointer;}
+  .rec{font-size:25px;font-weight:600;} .bar{height:8px;background:#eee;border-radius:6px;overflow:hidden;margin:8px 0;}
+  .bar>div{height:100%;background:var(--acc);} .factor{margin:2px 0;font-size:15px;}
+  .note{background:#eef3f7;border-radius:8px;padding:12px;font-size:13px;color:#33475b;margin-top:12px;}
+  .modelcard{border-top:1px solid var(--line);padding-top:12px;margin-top:14px;}
+  select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;background:#fff;}
+  summary{color:var(--acc);}
+  footer{margin-top:40px;color:var(--mut);font-size:13.5px;border-top:1px solid var(--line);padding-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>ShouldIPost?</h1>
+  <p class="sub">Can a TikTok's success be predicted <b>before</b> it is posted? A calibrated,
+     leakage-controlled study, and an honest answer.</p>
+  <div class="pills">
+    <a href="results.html">Full results notebook</a>
+  </div>
+
+  <h2>Headline results</h2>
+  <div class="grid">
+    <div class="stat"><div class="n">≈ 0.57</div><div class="l">Model A (pre-publication) ROC-AUC, LOCO — the information ceiling</div></div>
+    <div class="stat"><div class="n">≈ 0.75</div><div class="l">Model B (+ day-1 signal) ROC-AUC, leak-free — better than A, not an oracle</div></div>
+    <div class="stat"><div class="n">16 / 16</div><div class="l">scored methods (deep nets, boosting, other-domain, rules) ≤ the simple baseline (3 more couldn't fit)</div></div>
+    <div class="stat"><div class="n">0.51 vs 0.86</div><div class="l">fame-leak of the within-creator label vs a naive absolute-views label</div></div>
+  </div>
+  <p class="mut" style="font-size:14px">Where these numbers come from (every figure is reproducible from
+     <code>reports/*</code>):</p>
+  <ul class="mut" style="font-size:14px;margin:0 0 6px;padding-left:20px;line-height:1.5">
+    <li><b>≈ 0.57 (Model A).</b> Leave-one-creator-out ROC-AUC for the within-creator breakout target is
+       <b>0.55–0.58</b> across model families — best pre-publication model 0.569 (logistic) / 0.581 (gradient
+       boosting); the deployed Model A is 0.568. Optuna tuning and stacking add under 0.01, so the wall is
+       the available information, not the model.</li>
+    <li><b>≈ 0.75 (Model B).</b> Adding only first-day engagement lifts ROC-AUC to <b>0.750</b>
+       (95% CI [0.745, 0.756], temporal test). Leak-free: it uses day-1 signals only, and the success
+       label is measured strictly after that, so the model cannot see its own outcome.</li>
+    <li><b>16 / 16 methods.</b> Sixteen alternatives — boosting, deep nets, learning-to-rank, multi-task,
+       causal IPS, clustering, a rule-based scorer, an FT-Transformer — all score at or below the
+       <b>0.567</b> best-Model-A baseline (best alternative 0.563). Three more (QDA, TabPFN-v2, TabNet)
+       could not fit and are reported as skipped, not hidden.</li>
+    <li><b>0.51 vs 0.86 (fame-leak).</b> A model that sees only the creator's audience size reproduces the
+       within-creator label at AUC <b>0.51</b> (≈ chance → the label measures content, not fame), but
+       reproduces a naive absolute-views label at <b>0.86</b> (→ that label mostly measures fame). This is
+       why the within-creator "beats your own median" target is used throughout.</li>
+  </ul>
+
+  <h2>What it is</h2>
+  <p>A two-model triage on <code>lingbow/tiktok-video-engagement-200k</code> (209k videos, 1,872
+     creators) returning <b>Post / Unsure / Do not post</b> with the main factors and an explicit note
+     on what a model can and cannot know. The honest finding: pre-publication reach is
+     <b>information-bound, not model-bound</b> — so the product's value is <b>triage + abstention + the
+     day-1 amplify/cut decision</b>, not a pre-publication oracle. Full method, ablations, literature
+     grounding and limits are in the <a href="results.html">results notebook</a>.</p>
+
+  <h2>The data journey — the first real decision</h2>
+  <p>The brief shipped <code>datahiveai/Tiktok-Videos</code>. EDA showed it cannot answer a
+     <i>pre-publication</i> question: only <b>4 creators / 2,060 rows</b>, a single engagement snapshot
+     (no day-by-day → no day-1 signal and no horizon label), a dead <code>repost_count</code> column,
+     and garbage timestamps — its deployed model scores ROC-AUC <b>0.52</b> (≈ random). So the first
+     deliverable was choosing a proper <b>dataset of record</b>:</p>
+  <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px">
+    <thead><tr style="text-align:left;color:var(--mut)">
+      <th style="padding:6px 8px;border-bottom:1px solid var(--line)">Dimension</th>
+      <th style="padding:6px 8px;border-bottom:1px solid var(--line)">datahiveai (brief)</th>
+      <th style="padding:6px 8px;border-bottom:1px solid var(--line)">lingbow (chosen)</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:6px 8px">Videos / creators</td><td style="padding:6px 8px">2,060 / 4</td><td style="padding:6px 8px"><b>209,543 / 1,872</b></td></tr>
+      <tr><td style="padding:6px 8px">Day-by-day engagement</td><td style="padding:6px 8px">no (one snapshot)</td><td style="padding:6px 8px"><b>yes (0–30 days)</b></td></tr>
+      <tr><td style="padding:6px 8px">Pre-publication content</td><td style="padding:6px 8px">caption, duration</td><td style="padding:6px 8px"><b>+ transcript, summary, topic, emotions, music, hashtags</b></td></tr>
+      <tr><td style="padding:6px 8px">Day-1 model · horizon label · LOCO</td><td style="padding:6px 8px">none feasible</td><td style="padding:6px 8px"><b>all feasible</b></td></tr>
+      <tr><td style="padding:6px 8px">Deployed pre-pub ROC-AUC</td><td style="padding:6px 8px">0.52 (≈ random)</td><td style="padding:6px 8px"><b>≈ 0.57 (honest ceiling)</b></td></tr>
+    </tbody>
+  </table>
+  <p class="mut">In lingbow, creator identity alone explains <b>74%</b> of the variance in log-views — so
+     an absolute-view label would grade <i>fame</i>, not content. That single fact forces the
+     within-creator "beats your own median" target used throughout. Full EDA, dataset selection and the
+     external sets that could raise the ceiling (SnapUGC, MicroLens, KuaiRand) are in the
+     <a href="results.html">notebook</a>.</p>
+
+  <h2>Probability calculator <span class="mut" style="font-size:14px">— Model A and Model B, in your browser</span></h2>
+  <p class="mut">This runs two <b>real trained logistic models</b> client-side (no server). The full Model A
+     uses text embeddings and video-derived features that cannot run in a static page, so this is an honest
+     <b>caption-plus-metadata surrogate</b>: held-out ROC-AUC <b id="aucA">…</b> for Model A
+     (pre-publication) and <b id="aucB">…</b> for Model B once you add day-1 plays and likes. The full
+     models and the analysis are in the <a href="results.html">notebook</a>.</p>
+  <p class="mut" style="font-size:14px">Why so few inputs: we measured feature impact (forward-addition and
+     drop-column on a held-out set). Among pre-publication signals only <b>topic</b> moves the needle
+     (about +0.013 AUC); caption wording, posting time, duration and flags add essentially nothing, so
+     exposing more would be fake precision. The accurate, business-usable signal is the <b>first day</b>
+     (Model B, AUC ≈ 0.71): post organically, enter day-1 plays, then decide whether to amplify. The
+     full feature-impact study is in the <a href="results.html">notebook</a> (section 10.1).</p>
+  <div class="card">
+    <label for="caption">Caption</label>
+    <textarea id="caption" placeholder="You won't believe what happens next, wait for it #fyp #storytime"></textarea>
+    <div class="row">
+      <div><label for="dur">Duration (s)</label><input type="number" id="dur" value="18" min="0" max="7200" step="1" inputmode="numeric"/></div>
+      <div><label for="when">Post time</label><input type="datetime-local" id="when"/></div>
+      <div><label for="topic">Topic</label><select id="topic"></select></div>
+    </div>
+    <div style="margin:10px 0 2px;font-size:14px">
+      <label style="display:inline;font-weight:400"><input type="checkbox" id="eng" checked/> English caption</label>
+      <label style="display:inline;font-weight:400;margin-left:16px"><input type="checkbox" id="ads"/> Marked as ad</label>
+      <label style="display:inline;font-weight:400;margin-left:16px"><input type="checkbox" id="ai"/> AI-generated</label>
+    </div>
+    <details style="margin:6px 0">
+      <summary style="cursor:pointer;font-size:14px">Day-1 data (optional — enables Model B)</summary>
+      <div class="row" style="margin-top:8px">
+        <div><label for="plays">Day-1 plays</label><input type="number" id="plays" min="0" max="10000000000" step="1" inputmode="numeric" placeholder="e.g. 5000"/></div>
+        <div><label for="likes">Day-1 likes</label><input type="number" id="likes" min="0" max="10000000000" step="1" inputmode="numeric" placeholder="e.g. 300"/></div>
+      </div>
+    </details>
+    <button id="go">Evaluate</button>
+    <div id="out" style="margin-top:8px;display:none">
+      <div id="cardA" class="modelcard"></div>
+      <div id="cardB" class="modelcard" style="display:none"></div>
+      <div class="note" id="cannot"></div>
+    </div>
+  </div>
+
+  <footer>
+    Prototype on CC BY-NC 4.0 data — research/non-commercial; "success" is a reach proxy (no
+    clicks/conversions). Built with Claude Code. Paid compute used: $0.
+  </footer>
+</div>
+
+<script>
+// Real Model A / Model B logistic surrogates, trained on browser-computable features by
+// scripts/build_web_model.py and inlined here (works offline and on GitHub Pages alike).
+const MODEL = /*MODEL_JSON_START*/{"version":"web-1.0","note":"Logistic surrogates trained on browser-computable features only; honest held-out AUC below.","topic_te":{"Beauty_Fashion":0.47826553227997426,"Cooking_Food":0.5118632240055827,"Dance_Music":0.4896414966341387,"Life_hacks_Personal_growth":0.5265319533431904,"Lifestyle":0.47052930372349305,"Movies_TV_Books":0.519979242345615,"Others":0.5183067302945532,"Shopping_Products":0.5184378629500581,"Sports_Fitness":0.5094362745098039,"__global__":0.501482},"topics":["Beauty_Fashion","Cooking_Food","Dance_Music","Life_hacks_Personal_growth","Lifestyle","Movies_TV_Books","Others","Shopping_Products","Sports_Fitness"],"A":{"features":["char_len","word_count","n_hashtags","n_emoji","has_question","has_cta","has_url","allcaps_ratio","hour_sin","hour_cos","dow_sin","dow_cos","is_weekend","log_duration","is_english","is_ads","created_by_ai","topic_te"],"labels":["caption length","word count","hashtag count","emoji count","question hook","call to action","off-platform link","ALL-CAPS ratio","posting hour","posting hour","day of week","day of week","weekend post","video length","English caption","marked as ad","AI-generated","topic prior"],"mean":[119.774329,14.889701,6.012673,0.978706,0.061483,0.07676,0.00266,0.024709,-0.29019,-0.166235,0.045184,-0.019671,0.256984,3.249532,0.651233,0.0,0.005279,0.501482],"std":[145.422307,20.649806,7.310948,2.205897,0.240214,0.266211,0.051506,0.088825,0.64052,0.691295,0.703963,0.708525,0.436971,0.876804,0.47658,1.0,0.072462,0.020869],"coef":[0.136403,-0.105116,-0.010873,0.008737,0.002186,-0.054358,-0.019311,0.004408,0.004502,0.010823,-0.017401,-0.008988,0.039663,-0.04086,0.019636,0.0,-0.013378,0.090227],"intercept":0.005953,"bands":{"t_low":0.4701,"t_high":0.5247},"metrics":{"roc_auc":0.5326,"brier":0.2493,"n_test":31184}},"B":{"features":["char_len","word_count","n_hashtags","n_emoji","has_question","has_cta","has_url","allcaps_ratio","hour_sin","hour_cos","dow_sin","dow_cos","is_weekend","log_duration","is_english","is_ads","created_by_ai","topic_te","log_play_d1","log_like_d1","er_d1"],"labels":["caption length","word count","hashtag count","emoji count","question hook","call to action","off-platform link","ALL-CAPS ratio","posting hour","posting hour","day of week","day of week","weekend post","video length","English caption","marked as ad","AI-generated","topic prior","day-1 plays","day-1 likes","day-1 engagement rate"],"mean":[119.774329,14.889701,6.012673,0.978706,0.061483,0.07676,0.00266,0.024709,-0.29019,-0.166235,0.045184,-0.019671,0.256984,3.249532,0.651233,0.0,0.005279,0.501482,6.566004,3.888874,0.103495],"std":[145.422307,20.649806,7.310948,2.205897,0.240214,0.266211,0.051506,0.088825,0.64052,0.691295,0.703963,0.708525,0.436971,0.876804,0.47658,1.0,0.072462,0.020869,1.684933,1.804861,0.32618],"coef":[-0.015776,0.011158,0.052405,0.026311,-0.027651,-0.013516,-0.010676,-0.033855,0.060495,0.081327,-0.009314,-0.003729,0.056025,-0.135688,-0.119756,0.0,-0.003741,0.05521,1.462425,-0.692315,0.848823],"intercept":0.038881,"bands":{"t_low":0.3766,"t_high":0.6483},"metrics":{"roc_auc":0.7027,"brier":0.2205,"n_test":31184}}}/*MODEL_JSON_END*/;
+const $ = id => document.getElementById(id);
+const COL = {Post:"var(--green)","Do not post":"var(--red)",Unsure:"var(--amber)"};
+const EMOJI = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F0FF}]/gu;
+const CTA = /\b(follow|like|share|comment|subscribe|link in bio|check out|tag|save|duet)\b/i;
+
+if (MODEL) {
+  MODEL.topics.forEach(t => { const o = document.createElement("option");
+    o.value = t; o.textContent = t.replace(/_/g, " "); $("topic").appendChild(o); });
+  $("aucA").textContent = MODEL.A.metrics.roc_auc.toFixed(2);
+  $("aucB").textContent = MODEL.B.metrics.roc_auc.toFixed(2);
+}
+
+// Parse + sanitise every field so no input can break the calculator (fool-proofing).
+function readInputs(){
+  const warn = [];
+  const num = (id) => { const v = parseFloat($(id).value); return Number.isFinite(v) ? v : 0; };
+  let cap = $("caption").value || "";
+  if (cap.length > 5000){ cap = cap.slice(0, 5000); warn.push("caption truncated to 5000 characters"); }
+  let dur = num("dur"); if (dur < 0) dur = 0;
+  if (dur > 7200){ dur = 7200; warn.push("duration capped at 7200 s"); }
+  let plays = num("plays"); if (plays < 0) plays = 0; if (plays > 1e10) plays = 1e10;
+  let likes = num("likes"); if (likes < 0) likes = 0; if (likes > 1e10) likes = 1e10;
+  if (plays > 0 && likes > plays){ likes = plays; warn.push("day-1 likes cannot exceed plays — clamped to plays"); }
+  let t = $("when").value ? new Date($("when").value) : new Date();
+  if (isNaN(t.getTime())) t = new Date();
+  return { cap, dur, plays, likes, dt: t, warn };
+}
+
+function features(inp){
+  const c = inp.cap, words = c.split(/\s+/).filter(Boolean);
+  const h = inp.dt.getHours() + inp.dt.getMinutes()/60, dow = (inp.dt.getDay()+6)%7;   // Mon=0..Sun=6
+  const te = MODEL.topic_te[$("topic").value] ?? MODEL.topic_te["__global__"];
+  const caps = words.filter(w => w.length>1 && w===w.toUpperCase() && /[A-Z]/.test(w));
+  return {
+    char_len:c.length, word_count:words.length,
+    n_hashtags:(c.match(/#\w+/g)||[]).length, n_emoji:(c.match(EMOJI)||[]).length,
+    has_question:c.includes("?")?1:0, has_cta:CTA.test(c)?1:0, has_url:/https?:\/\/|www\./.test(c)?1:0,
+    allcaps_ratio: words.length ? caps.length/words.length : 0,
+    hour_sin:Math.sin(2*Math.PI*h/24), hour_cos:Math.cos(2*Math.PI*h/24),
+    dow_sin:Math.sin(2*Math.PI*dow/7), dow_cos:Math.cos(2*Math.PI*dow/7),
+    is_weekend: dow>=5?1:0, log_duration:Math.log1p(inp.dur),
+    is_english:$("eng").checked?1:0, is_ads:$("ads").checked?1:0, created_by_ai:$("ai").checked?1:0,
+    topic_te: Number.isFinite(te) ? te : MODEL.topic_te["__global__"],
+    log_play_d1:Math.log1p(inp.plays), log_like_d1:Math.log1p(inp.likes),
+    er_d1: inp.plays>0 ? Math.min(1, inp.likes/inp.plays) : 0,
+  };
+}
+
+function score(sub, f){
+  let logit = sub.intercept; const contrib = {};
+  sub.features.forEach((name, i) => {
+    const z = ((f[name] ?? 0) - sub.mean[i]) / sub.std[i];
+    const v = sub.coef[i]*z; logit += v;
+    const lab = sub.labels[i];                                   // merge duplicates (hour/day twice)
+    if (!contrib[lab] || Math.abs(v) > Math.abs(contrib[lab])) contrib[lab] = v;
+  });
+  const p = 1/(1+Math.exp(-logit)), b = sub.bands;
+  const rec = p>=b.t_high ? "Post" : (p<b.t_low ? "Do not post" : "Unsure");
+  const factors = Object.entries(contrib).map(([label,v])=>({label,v}))
+    .sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,4);
+  return {p, rec, factors};
+}
+
+function render(el, title, sub, f){
+  const r = score(sub, f);
+  const pct = Number.isFinite(r.p) ? Math.round(Math.min(1, Math.max(0, r.p))*100) : 0;
+  el.style.display = "block";
+  el.innerHTML =
+    `<div style="font-size:13px;color:var(--mut);margin-bottom:2px">${title} · held-out AUC ${sub.metrics.roc_auc.toFixed(2)}</div>`+
+    `<div class="rec" style="color:${COL[r.rec]}">${r.rec} `+
+      `<span style="font-weight:400;font-size:16px;color:var(--mut)">P(success) = ${pct}%</span></div>`+
+    `<div class="bar"><div style="width:${pct}%"></div></div>`+
+    `<p class='mut' style='margin:8px 0 2px'>Top factors</p>`+
+    r.factors.map(x=>`<div class="factor">${x.v>0?"↑":"↓"} ${x.label}</div>`).join("");
+}
+
+$("go").onclick = () => {
+  try {
+    if (!MODEL){ alert("Model not embedded — run scripts/build_web_model.py to inline web_model.json."); return; }
+    const inp = readInputs();
+    const f = features(inp);
+    $("out").style.display = "block";
+    render($("cardA"), "Model A — pre-publication (caption + metadata)", MODEL.A, f);
+    if (inp.plays > 0) render($("cardB"), "Model B — with day-1 plays and likes", MODEL.B, f);
+    else $("cardB").style.display = "none";
+    $("cannot").innerHTML =
+      (inp.warn.length ? "<b>Adjusted:</b> " + inp.warn.join("; ") + ".<br>" : "") +
+      "What the model cannot see before posting: actual watch-time, the first-seconds hook as a viewer "+
+      "experiences it, algorithmic seeding, and trend-timing luck. Pre-publication signal is weak by nature "+
+      "(Model A AUC ~"+MODEL.A.metrics.roc_auc.toFixed(2)+" here), so it triages and abstains to Unsure "+
+      "rather than bluff; the day-1 model (B) is far stronger.";
+  } catch (e) {
+    $("out").style.display = "block";
+    $("cannot").textContent = "Could not score this input — please check the fields and try again.";
+  }
+};
+</script>
+</body>
+</html>

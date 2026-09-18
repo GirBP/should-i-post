@@ -1,0 +1,21 @@
+method,family,auc,secs,note
+best-A HGB (reference),baseline,0.5666,,
+random_forest,cpu-classifier,0.5468,375.2,
+extra_trees,cpu-classifier,0.5401,178.7,
+gradient_boosting,cpu-classifier,0.563,799.6,
+adaboost,cpu-classifier,0.5186,226.5,
+bagging,cpu-classifier,0.5419,1335.2,
+logreg_balanced,cpu-classifier,0.5623,42.9,
+sgd_log,cpu-classifier,0.517,11.2,
+knn,cpu-classifier,0.5031,8.1,
+gaussian_nb,cpu-classifier,0.5481,0.6,
+lda,cpu-classifier,0.5576,7.0,
+qda,cpu-classifier,,,LinAlgError: The covariance matrix of class 0 is not full rank. Increase 
+mlp_sklearn,cpu-classifier,0.53,52.1,
+svc_rbf,cpu-classifier,0.5131,256.0,
+RULE-BASED (expert system),rules,0.4932,,
+best-A + graph_hashtag_neighbor,graph,0.534,,
+deep_ensemble(5xMLP),torch,0.5502,,
+focal_loss_mlp,torch,0.5425,,
+TabPFN-v2,tabular-foundation,,,skip: TabPFNLicenseError
+TabNet,tabular-dl,,,skip: ModuleNotFoundError

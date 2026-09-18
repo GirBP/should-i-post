@@ -1,0 +1,3 @@
+model,breakout_temporal_auc,std
+single-task (breakout),0.5584,0.0064
+multi-task (3 heads),0.5302,0.0094

@@ -1,0 +1,11 @@
+# Cheapest always-on stack: the torch-free Models A/B calculator on the smallest droplet.
+# No torch, no video → runs in <256 MB RAM, so a $4–6/mo droplet is plenty.
+#   cd deploy && docker compose -f slim.docker-compose.yml up -d --build
+# Public on http://<droplet-ip>/  (for HTTPS add a domain + the Caddy service from docker-compose.yml).
+services:
+  app:
+    build: ../heroku_app
+    image: shouldipost-slim:latest
+    restart: unless-stopped
+    ports:
+      - "80:8080"          # uvicorn served directly; no proxy needed for the minimal setup

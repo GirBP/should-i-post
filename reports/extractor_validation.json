@@ -1,0 +1,45 @@
+{
+ "n_slice": 262,
+ "n_hits": 176,
+ "n_english": 180,
+ "confound": {
+  "auc_day1_alone_slice": 0.6671,
+  "auc_day1_alone_test": 0.7092,
+  "spearman_day1_followers_slice": 0.6043,
+  "spearman_day1_followers_test": 0.5914
+ },
+ "author_relative_day1": {
+  "auc_slice": 0.9188,
+  "auc_test": 0.9358,
+  "note": "day-1 plays minus the creator's own TRAIN-median; needs one number the creator knows"
+ },
+ "slice": {
+  "aucA_dataset_text": 0.6204,
+  "aucA_caption_only": 0.5399,
+  "aucB_real_day1": 0.7589,
+  "population_reference": {
+   "A": 0.5683,
+   "B": 0.7502
+  }
+ },
+ "fidelity": {
+  "coverage": {
+   "both_present": 92,
+   "whisper_recovers_missing_dataset_transcript": 156,
+   "dataset_only_whisper_silent": 4,
+   "both_empty": 10
+  },
+  "token_jaccard_median_both": 0.859,
+  "bge_cosine_median_both": 0.915,
+  "bge_cosine_median_both_en": 0.919,
+  "bge_cosine_median_both_nonen": 0.908,
+  "aucA_extracted_text": 0.6102,
+  "aucA_dataset_text": 0.6204,
+  "aucA_extracted_text_en": 0.6205,
+  "aucA_dataset_text_en": 0.6638,
+  "abs_dp_median": 0.0236,
+  "abs_dp_p90": 0.0812,
+  "decision_agreement_at_0p5": 0.7634,
+  "note": "extracted = caption + Whisper transcript (no LLM summary; the extractor floor)"
+ }
+}

@@ -1,0 +1,41 @@
+{
+  "old": {
+    "name": "datahiveai/Tiktok-Videos",
+    "rows": 2060,
+    "creators": 4,
+    "videos_per_creator_median": 414.0,
+    "top_creator_share": 0.4893203883495146,
+    "top5_play_share": 0.07532494718273652,
+    "repost_all_zero": true,
+    "create_year_min": 1970,
+    "create_year_max": 2025,
+    "garbage_epoch_rows": 3,
+    "has_daily_engagement": false,
+    "fame_eta2_logplays": 0.10862814261102119,
+    "deployed_loco_auc": 0.52
+  },
+  "new": {
+    "name": "lingbow/tiktok-video-engagement-200k",
+    "rows": 209543,
+    "creators": 1872,
+    "videos_per_creator_median": 69.0,
+    "videos_per_creator_p90": 252.0,
+    "date_min": "2024-06-24",
+    "date_max": "2024-11-09",
+    "has_daily_engagement": true,
+    "engagement_days": 30,
+    "creator_daily_rows": 278433,
+    "content_coverage": {
+      "transcript": 1.0,
+      "gpt_summary": 1.0,
+      "topic": 1.0,
+      "hashtags": 0.514643772399937
+    },
+    "fame_eta2_logviews": 0.7354337986069197,
+    "followers_median": 12976.0,
+    "followers_p99": 2009615.0,
+    "day1_over_day14_views_mean": 0.36352107786458737,
+    "day1_over_day14_views_median": 0.7178631051752922,
+    "eligible": 207509
+  }
+}

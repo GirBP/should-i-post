@@ -1,0 +1,5 @@
+# Default install for ShouldIPost? — see requirements/ for the split:
+#   requirements/base.txt         core + video pipeline + web app (this file's target)
+#   requirements/dev.txt          base + pytest
+#   requirements/multimodal.txt   base + SigLIP/CLAP video-boost extras
+-r requirements/base.txt

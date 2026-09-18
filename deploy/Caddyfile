@@ -1,0 +1,17 @@
+# Public edge for ShouldIPost. SITE_ADDRESS comes from compose:
+#   - a domain (e.g. shouldipost.example.com) -> Caddy gets a Let's Encrypt cert automatically
+#   - ":80" (default) -> plain HTTP on the droplet's IP, no cert needed
+{$SITE_ADDRESS} {
+	# 200 MB uploads + headroom (webapp caps at 200 MB); Caddy default is only ~10 MB.
+	request_body {
+		max_size 250MB
+	}
+	# Video extraction (Whisper + SigLIP + CLAP) can take 30–120 s on CPU — no proxy read
+	# timeout, so long requests are NOT cut off (this was Heroku's hard 30 s wall).
+	reverse_proxy app:8080 {
+		transport http {
+			read_timeout 300s
+			write_timeout 300s
+		}
+	}
+}

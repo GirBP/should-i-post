@@ -1,0 +1,3 @@
+scorer,mean_author_spearman,mean_ndcg@3,n_authors
+LambdaMART(rank:pairwise),0.1597,0.4451,1495
+classifier(prob),0.1799,0.4492,1495

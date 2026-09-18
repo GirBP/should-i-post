@@ -1,0 +1,11 @@
+section,day,auc_vs_breakout14,frac_of_day14_auc,auc_extrap_to_14,auc_raw_day_d,n
+early_window,0,0.5956,0.417,,,
+early_window,1,0.7097,0.914,,,
+early_window,2,0.7185,0.953,,,
+early_window,3,0.722,0.968,,,
+early_window,5,0.725,0.981,,,
+early_window,7,0.7267,0.989,,,
+early_window,14,0.7293,1.0,,,
+growth_extrap,1,,,0.7188,0.7188,8000.0
+growth_extrap,3,,,0.7308,0.7314,8000.0
+growth_extrap,7,,,0.7358,0.7355,8000.0

@@ -1,0 +1,5 @@
+tag,model,auc,ci_lo,ci_hi,brier
+whole,HGB (trees),0.5918,0.581,0.602,0.2424
+whole,Linear probe,0.5795,0.569,0.591,0.2958
+whole,MLP (2-hidden),0.5887,0.577,0.6,0.2459
+whole,Gated fusion,0.5883,0.577,0.599,0.2455

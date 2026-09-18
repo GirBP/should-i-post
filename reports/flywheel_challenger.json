@@ -1,0 +1,13 @@
+{
+ "ts": "2026-07-05T21:34:01+00:00",
+ "n_new_rows": 6,
+ "champion": {
+  "auc_temporal_test": 0.5683
+ },
+ "challenger": {
+  "auc_temporal_test": 0.569,
+  "brier": 0.2459
+ },
+ "verdict": "challenger >= champion \u2014 consider promotion (manual)",
+ "promotion": "manual: replace models/deployable.joblib only after review"
+}

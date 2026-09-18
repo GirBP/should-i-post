@@ -1,0 +1,25 @@
+.venv
+.git
+data
+demo_videos
+audit
+notebooks/.ipynb_checkpoints
+**/__pycache__
+*.log
+*.aiff
+# research UI — replaced by the self-contained Apple index.html (keep the deploy exclusively Apple + slim)
+webapp/static/results.html
+webapp/static/landing.html
+webapp/static/calculator.html
+webapp/static/index_research.html
+webapp/static/app.js
+webapp/static/style.css
+# superseded models — the product ships ONE classifier (models/unified.joblib); drop the rest
+models/deployable.joblib
+models/deployable_mm.joblib
+models/challenger.joblib
+models/model.joblib
+models/model_a_calc.joblib
+models/model_b_calc.joblib
+models/metadata.json
+models/reference.parquet

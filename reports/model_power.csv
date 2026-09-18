@@ -1,0 +1,5 @@
+model,LOCO_AUC
+logreg,0.535
+hgb_tuned,0.541
+mlp,0.525
+stack,0.536

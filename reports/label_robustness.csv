@@ -1,0 +1,10 @@
+section,setting,loco_auc,base_rate,agree_vs_H14,fame_leak_auc,bestA,bestA+authhist,authhist_only,lift
+horizon,H=7,0.5708,0.498,0.964,,,,,
+horizon,H=10,0.5706,0.498,0.978,,,,,
+horizon,H=14,0.5704,0.498,0.995,,,,,
+horizon,H=21,0.5696,0.498,0.977,,,,,
+label_def,within_creator_median,0.5678,0.503,,0.5044,,,,
+label_def,global_top30_breakout,0.5945,0.3,,0.664,,,,
+label_def,abs_logviews_top30,0.7153,0.3,,0.8565,,,,
+author_hist,y_breakout_wc,,,,,0.5678,0.5678,0.4973,0.0
+author_hist,y_er_wc,,,,,0.5982,0.5982,0.4991,-0.0

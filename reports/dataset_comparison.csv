@@ -1,0 +1,13 @@
+dimension,datahiveai/Tiktok-Videos (brief),lingbow/…-200k (chosen)
+Videos,2 060,209 543
+Creators,4,1 872
+Median videos / creator,414.00,69.00
+Top-creator share of rows,49%,<1%
+Day-by-day engagement (0–30),no (one snapshot),yes (30 days)
+Creator follower state over time,no,"yes (278,433 rows)"
+Pre-publication content fields,caption / duration,caption / transcript / gpt-summary / topic / emotions / music / hashtags
+Horizon-H within-creator label feasible,no,"yes (H∈{7,10,14,21})"
+Day-1 Model B feasible,no,yes
+LOCO cross-creator eval feasible,no (4 groups),"yes (1,872 groups)"
+Creator-identity share of log-views (eta²),0.11,0.74
+Deployed pre-pub ROC-AUC (prior run),0.52 (≈random),see §5 (≈0.57)

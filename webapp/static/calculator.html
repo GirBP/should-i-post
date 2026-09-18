@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ShouldIPost? — video success calculator</title>
+<link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+<div class="wrap">
+  <h1>ShouldIPost? <span id="warmDot" title="system status" style="font-size:13px;font-weight:400;color:var(--mut)">● loading…</span></h1>
+  <p class="sub">Success probability for a short video, from the deployed Model A / Model B — the backend
+     extracts the features itself.</p>
+
+  <div class="card">
+    <div class="seg" id="seg">
+      <button data-mode="file" class="on">Not posted yet — upload file</button>
+      <button data-mode="url">Already posted — paste link</button>
+    </div>
+
+    <!-- Unpublished: file + the fields that can't be read from the file (the caption to be posted) -->
+    <div id="panel-file">
+      <label style="margin-top:0">Demo examples <span class="hint" style="display:inline">— one click loads a ready video + its caption (for the walkthrough)</span></label>
+      <div id="samples" class="hint">loading examples…</div>
+      <label for="file">Video file (mp4 / mov)</label>
+      <input type="file" id="file" accept="video/mp4,video/quicktime,.mp4,.mov"/>
+      <div id="loaded" class="hint" style="display:none;margin-top:6px"></div>
+      <label for="cap">Caption you would post <span class="hint" style="display:inline">(not in the file — you provide it)</span></label>
+      <textarea id="cap" placeholder="What is this?? wait for it #fyp #storytime"></textarea>
+      <label for="when">Planned post time (optional)</label>
+      <input type="datetime-local" id="when"/>
+    </div>
+
+    <!-- Published: URL, backend extracts caption + transcript + everything -->
+    <div id="panel-url" class="hidden">
+      <label for="url">Video URL (TikTok / YouTube Shorts …)</label>
+      <input type="url" id="url" placeholder="https://www.tiktok.com/@user/video/1234567890"/>
+      <p class="hint">The backend fetches the metadata (caption, duration), downloads the audio, transcribes
+         it and derives the content fields — all automatically. Public platforms may rate-limit downloads.</p>
+      <div style="margin-top:10px;padding:12px;border:1px dashed var(--line);border-radius:10px">
+        <b style="font-size:14px">Self-learning</b>
+        <p class="hint" style="margin:4px 0 8px">Track this posted video: the system polls its public stats,
+           freezes the day-1 signal, self-labels it after 14 days against the creator's own median, and the
+           accumulated labels retrain a challenger model (champion is replaced only after human review).</p>
+        <button type="button" id="trackBtn" style="border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer">Track for self-learning</button>
+        <button type="button" id="fwStatusBtn" style="border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-left:6px">Flywheel status</button>
+        <div id="fwOut" class="hint" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <label for="lang">Spoken language <span class="hint" style="display:inline">— set it so Whisper does not mis-detect (e.g. Ukrainian read as Russian)</span></label>
+    <select id="lang">
+      <option value="auto">Auto-detect</option>
+      <option value="en">English</option>
+      <option value="uk">Ukrainian (українська)</option>
+      <option value="ru">Russian</option>
+      <option value="es">Spanish</option>
+      <option value="pt">Portuguese</option>
+      <option value="de">German</option>
+      <option value="fr">French</option>
+      <option value="pl">Polish</option>
+      <option value="translate">Translate to English (any language)</option>
+    </select>
+
+    <label for="cost">Selectivity — cost of a false "Post" ÷ cost of a missed hit: <b id="costv">1.0</b></label>
+    <input type="range" id="cost" min="0.2" max="5" step="0.1" value="1.0"/>
+
+    <details style="margin-top:10px">
+      <summary style="cursor:pointer;color:var(--acc);font-size:14px">Day-1 data (optional — switches to Model B)</summary>
+      <p class="hint" style="margin:6px 0">In <b>URL mode Model B activates automatically</b> when a genuine day-1
+         signal exists — a tracked 24h snapshot, or a video that is ~1 day old (current counts ≈ day-1). Fill
+         these fields only to override. Enter the counts <b>at the 24-hour mark only</b>: for an old video the URL
+         shows <i>current cumulative</i> counts, not day-1, so typing those gives Model B out-of-distribution input.
+         True day-1 comes from <b>Track for self-learning</b> (snapshots at 24h).</p>
+      <div class="row" style="margin-top:8px">
+        <div><label for="plays">Day-1 plays</label><input type="number" id="plays" min="0" placeholder="e.g. 5000"/></div>
+        <div><label for="likes">Day-1 likes</label><input type="number" id="likes" min="0" placeholder="e.g. 300"/></div>
+      </div>
+    </details>
+
+    <button class="primary" id="go">Evaluate</button>
+  </div>
+
+  <div id="out" class="card hidden"></div>
+
+  <footer>
+    Local app · deployed Model A (pre-publication) / Model B (day-1). Feature extraction: ffmpeg + Whisper
+    (+ optional LLM for topic/emotions). "Success" = beats the creator's own median reach; triage, not an oracle.
+  </footer>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

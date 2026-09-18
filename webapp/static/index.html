@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShouldIPost?</title>
+<style>
+  :root{
+    --ink:#1d1d1f; --sub:#6e6e73; --line:#e3e3e6; --bg:#fbfbfd; --card:#ffffff;
+    --accent:#0071e3; --green:#1a7f37; --red:#d70015; --amber:#9a6700;
+    --radius:18px; --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+       color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px 96px}
+  header{text-align:center;padding:72px 0 30px}
+  header h1{font-size:52px;font-weight:600;letter-spacing:-.022em}
+  header h1 .q{color:var(--accent)}
+  header p{color:var(--sub);font-size:20px;margin-top:10px;font-weight:400}
+  .dot{margin-top:14px;font-size:13px;color:var(--sub)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+        box-shadow:var(--shadow);padding:26px;margin-bottom:20px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--sub);margin:0 0 7px;letter-spacing:.01em}
+  textarea,input[type=text],input[type=url],input[type=number],input[type=datetime-local]{
+        width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
+        border:1px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .15s}
+  textarea:focus,input:focus{border-color:var(--accent)}
+  textarea{resize:vertical;min-height:70px}
+  .row{display:flex;gap:14px}.row>div{flex:1}
+  .field{margin-bottom:18px}.field:last-child{margin-bottom:0}
+
+  /* segmented control (Apple) */
+  .seg{display:flex;background:#f0f0f2;border-radius:12px;padding:4px;margin-bottom:20px}
+  .seg button{flex:1;border:0;background:transparent;padding:9px;border-radius:9px;
+        font:inherit;font-size:15px;font-weight:500;color:var(--sub);cursor:pointer;transition:.15s}
+  .seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .hidden{display:none}
+
+  /* custom file button */
+  .filewrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .filewrap input[type=file]{display:none}
+  .filebtn{display:inline-block;background:#f5f5f7;border:1px solid var(--line);border-radius:12px;
+        padding:11px 18px;font-size:15px;font-weight:500;cursor:pointer;transition:background .15s;white-space:nowrap}
+  .filebtn:hover{background:#ececee}
+  .fname{font-size:14px;color:var(--sub);word-break:break-all}
+
+  .demo{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:transparent;border:0;
+        color:var(--accent);font:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:0}
+  .demo:hover{text-decoration:underline}
+
+  details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+  summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--accent);list-style:none;padding:2px 0}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";font-weight:700}
+  details[open] summary::before{content:"– "}
+
+  .btn{display:block;width:100%;margin-top:20px;background:var(--accent);color:#fff;border:0;
+       border-radius:980px;padding:15px;font-size:17px;font-weight:500;cursor:pointer;transition:opacity .15s}
+  .btn:hover{opacity:.9}.btn:active{opacity:.8}.btn:disabled{opacity:.5;cursor:default}
+
+  .out{display:none}
+  .verdict{display:flex;align-items:baseline;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .verdict:first-child{padding-top:2px}.verdict:last-of-type{border-bottom:0}
+  .tag{font-size:11px;font-weight:700;color:var(--sub);letter-spacing:.05em;text-transform:uppercase;min-width:96px;flex-shrink:0}
+  .pill{font-size:22px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+  .pill.post,.pill.keep{color:var(--green)}.pill.stop,.pill.delete{color:var(--red)}.pill.unsure{color:var(--amber)}
+  .vmeta{color:var(--sub);font-size:14px}.vmeta b{color:var(--ink);font-weight:600}
+  .bar{height:6px;background:#f0f0f2;border-radius:99px;overflow:hidden;margin:2px 0 0}
+  .bar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+  .rationale{color:var(--sub);font-size:14px;margin:14px 0 0}
+  .kv{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .kv:last-child{border-bottom:0}.kv .k{color:var(--sub);flex-shrink:0}.kv .v{text-align:right;word-break:break-word}
+  .chip{display:inline-block;background:#f0f0f2;border-radius:7px;padding:1px 8px;font-size:12px;font-weight:600}
+  .warn{background:#fff8e6;border:1px solid #f5e2a8;border-radius:12px;padding:12px 14px;font-size:13px;color:#7a5b00;margin-top:14px}
+  .agebox{font-size:13px;margin-top:10px;padding:10px 13px;border-radius:11px;background:#f0f0f2;color:var(--sub)}
+  .agebox.ok{background:#eaf7ee;color:var(--green)}
+  .agebox.warn{background:#fff8e6;color:#7a5b00;border:0;margin-top:10px}
+  .chk{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer}
+  .chk input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+  .err{color:var(--red);font-size:15px;font-weight:500}
+  .spinner{display:inline-block;width:15px;height:15px;border:2px solid #d2d2d7;border-top-color:var(--accent);
+        border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:8px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  h2{font-size:15px;font-weight:600;margin-bottom:14px;letter-spacing:-.01em}
+  .mc p{font-size:14px;color:var(--sub);margin-bottom:12px}.mc p:last-of-type{margin-bottom:0}.mc b{color:var(--ink)}
+  .dl{display:flex;gap:12px;margin-top:16px}.dl a{flex:1;text-align:center;text-decoration:none;color:var(--accent);
+       border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;font-weight:500;transition:background .15s}
+  .dl a:hover{background:#f5f5f7}
+  footer{text-align:center;color:var(--sub);font-size:12px;padding-top:8px;line-height:1.6}
+  @media(max-width:520px){header h1{font-size:40px}.row{flex-direction:column;gap:0}.row>div{margin-bottom:18px}
+       .tag{min-width:76px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ShouldIPost<span class="q">?</span></h1>
+    <p>Оцінка TikTok до публікації — відео чи посилання, дві моделі, чесно</p>
+    <div class="dot" id="dot">· перевірка бекенду…</div>
+  </header>
+
+  <div class="card">
+    <div class="seg" id="seg">
+      <button data-mode="file" class="on" type="button">Відео-файл</button>
+      <button data-mode="url" type="button">Посилання</button>
+    </div>
+
+    <!-- FILE mode -->
+    <div id="panel-file">
+      <div class="field">
+        <label>Відео (mp4 / mov) — ще не опубліковане</label>
+        <div class="filewrap">
+          <label class="filebtn" for="file">Обрати файл</label>
+          <input id="file" type="file" accept="video/*">
+          <span class="fname" id="fname">файл не обрано</span>
+        </div>
+        <button class="demo" id="demoBtn" type="button">▶ Спробувати на демо-відео</button>
+      </div>
+      <div class="field">
+        <label>Підпис (caption), який плануєш</label>
+        <textarea id="cap" placeholder="Напиши підпис так, як опублікуєш…"></textarea>
+      </div>
+    </div>
+
+    <!-- URL mode -->
+    <div id="panel-url" class="hidden">
+      <div class="field">
+        <label>Посилання на відео (вже опубліковане)</label>
+        <input id="url" type="url" placeholder="https://www.tiktok.com/@…/video/…">
+        <div id="ageBox" class="agebox hidden"></div>
+      </div>
+    </div>
+
+    <details id="d1">
+      <summary>Дані за перший день (опційно)</summary>
+      <!-- URL-mode: auto-use the link's counts (shown only for links) -->
+      <label class="chk hidden" id="autoRow" style="margin-top:16px">
+        <input type="checkbox" id="autoD1" checked>
+        <span>Взяти перегляди й лайки з посилання автоматично</span>
+      </label>
+      <!-- manual entry: always for a file; for a link only when the checkbox is off -->
+      <div class="row" id="manualD1" style="margin-top:14px">
+        <div><label>Перегляди day‑1</label><input id="plays" type="number" min="0" placeholder="напр. 8000"></div>
+        <div><label>Лайки day‑1</label><input id="likes" type="number" min="0" placeholder="напр. 600"></div>
+      </div>
+    </details>
+
+    <button class="btn" id="go" type="button">Оцінити</button>
+  </div>
+
+  <div class="card out" id="out"></div>
+
+  <div class="card">
+    <h2>Завантажити модель</h2>
+    <div class="dl"><a href="/download/u">Класифікатор · .joblib</a></div>
+  </div>
+
+  <div class="card mc">
+    <h2>Один класифікатор · методологія</h2>
+    <p><b>Архітектура.</b> Три попередньо‑навчені екстрактори — Whisper (мова→транскрипт),
+      SigLIP (кадри→768‑D), CLAP (аудіо→512‑D) — плюс BGE‑ембединг тексту й ручні ознаки
+      (підпис, теги, тривалість, час) подаються в <b>один класифікатор</b> (HistGradientBoosting),
+      який видає калібрований бал → Post / Do‑not‑post / <b>Unsure</b> (reject‑option).</p>
+    <p><b>День‑1 — строго опційно.</b> Якщо ти ввів перегляди/лайки за першу добу (вручну або галочкою
+      з посилання), вмикається день‑1 голова того самого класифікатора; якщо ні — вони не
+      враховуються ніде.</p>
+    <p><b>Мітка.</b> «Breakout within‑creator» @ H=14 — чи відео перевершило медіану власного автора
+      (fame‑neutral). <b>Чесна стеля:</b> до публікації ≈ 0.60 ROC‑AUC (інформаційна межа),
+      з день‑1 ≈ 0.74. Навчено на ~12.7k реальних TikTok, спліт по авторах. Прогноз нудить +
+      утримується, він не оракул.</p>
+  </div>
+
+  <footer>Витягує ознаки трьома попередньо‑навченими моделями (SigLIP · CLAP · Whisper).<br>
+    Постити, коли невпевнено, і давати день‑1 вирішити.</footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const CLS = {"Post":"post","Do not post":"stop","Unsure":"unsure","Keep":"keep","Delete":"delete"};
+let mode = "file";
+
+$("#seg").addEventListener("click", e => {
+  const b = e.target.closest("button[data-mode]"); if(!b) return;
+  mode = b.dataset.mode;
+  $("#seg").querySelectorAll("button").forEach(x => x.classList.toggle("on", x===b));
+  $("#panel-file").classList.toggle("hidden", mode!=="file");
+  $("#panel-url").classList.toggle("hidden", mode!=="url");
+  $("#out").style.display = "none"; $("#out").innerHTML = "";   // drop the stale result when switching tabs
+  updateD1UI();
+});
+$("#file").addEventListener("change", () => {
+  const f = $("#file").files[0]; $("#fname").textContent = f ? f.name : "файл не обрано";
+});
+
+// day-1 controls: "auto from link" checkbox vs manual fields
+function updateD1UI(){
+  const isUrl = mode === "url";
+  $("#autoRow").classList.toggle("hidden", !isUrl);              // auto-from-link only applies to a URL
+  $("#manualD1").classList.toggle("hidden", isUrl && $("#autoD1").checked);
+  if(!isUrl) $("#ageBox").classList.add("hidden");
+}
+$("#autoD1").addEventListener("change", updateD1UI);
+
+// automatic age check: when a link is pasted, ask the backend how old the video is (>1 day?)
+let probeTimer = null, lastProbed = "", probeData = null;   // probeData = counts for the auto checkbox
+$("#url").addEventListener("input", () => {
+  clearTimeout(probeTimer);
+  const url = $("#url").value.trim();
+  if(!/^https?:\/\/\S{8,}/.test(url)){ $("#ageBox").classList.add("hidden"); lastProbed = ""; return; }
+  probeTimer = setTimeout(() => probeAge(url), 800);
+});
+function fmt(n){ n = Number(n); return n>=1e6 ? (n/1e6).toFixed(1)+"M" : n>=1e3 ? (n/1e3).toFixed(1)+"K" : String(n); }
+async function probeAge(url){
+  if(url === lastProbed) return; lastProbed = url; probeData = null;
+  const box = $("#ageBox"); box.className = "agebox"; box.classList.remove("hidden");
+  box.innerHTML = `<span class="spinner"></span>перевіряю дату публікації…`;
+  $("#d1").open = true;
+  try{
+    const r = await postJSON("/api/probe", {url});
+    probeData = r;
+    const a = r.age_days;
+    const aStr = a==null ? "" : (a >= 1 ? Math.round(a)+" дн" : Math.round(a*24)+" год");
+    const counts = (r.views != null) ? ` · зараз ${fmt(r.views)} переглядів${r.likes!=null ? " / "+fmt(r.likes)+" лайків" : ""}` : "";
+    if(a == null){
+      box.className = "agebox warn"; $("#autoD1").checked = false;
+      box.textContent = "Дату публікації не вдалося визначити — введи day‑1 вручну, якщо потрібно.";
+    }else if(r.auto_ok){                                          // ~1 day old → current counts ≈ day-1
+      box.className = "agebox ok"; $("#autoD1").checked = true;
+      box.innerHTML = `✓ опубліковано ~${aStr} тому (понад добу) — поточні лічильники ≈ day‑1${counts}. Галочка візьме їх автоматично.`;
+    }else if(r.over_one_day){                                     // >2 days → cumulative ≠ day-1
+      box.className = "agebox warn"; $("#autoD1").checked = false;
+      box.innerHTML = `Опубліковано ~${aStr} тому — поточні лічильники вже кумулятивні, це НЕ day‑1. Введи справжні 24‑годинні числа вручну.`;
+    }else{                                                        // < 1 day → too young
+      box.className = "agebox warn"; $("#autoD1").checked = false;
+      box.innerHTML = `Опубліковано менше доби тому (~${aStr}) — day‑1 ще не дозрів. Лиши Model A або зачекай добу.`;
+    }
+  }catch(e){
+    box.className = "agebox warn"; $("#autoD1").checked = false;
+    box.textContent = "Не вдалося перевірити посилання (рейт‑ліміт TikTok?). Можна ввести day‑1 вручну.";
+  }
+  updateD1UI();
+}
+
+// one-click demo: load a bundled TikTok + its caption, then score it
+$("#demoBtn").addEventListener("click", async () => {
+  const btn = $("#demoBtn"); btn.disabled = true; btn.textContent = "завантаження демо…";
+  const out = $("#out"); out.style.display = "block";
+  out.innerHTML = `<div><span class="spinner"></span>Завантажую демо-відео…</div>`;
+  try{
+    const vidRes = await fetch("/static/samples/demo1_hit.mp4");
+    if(!vidRes.ok) throw new Error(`demo1_hit.mp4 → HTTP ${vidRes.status}`);
+    const man = await fetch("/static/samples/manifest.json").then(r => r.ok ? r.json() : []);
+    const f = new File([await vidRes.blob()], "demo1_hit.mp4", {type:"video/mp4"});
+    const dt = new DataTransfer(); dt.items.add(f); $("#file").files = dt.files;
+    $("#fname").textContent = "demo1_hit.mp4";
+    const m = (man||[]).find(x => x.name === "demo1_hit");
+    if(m && m.caption) $("#cap").value = m.caption;
+    if(mode !== "file") $('#seg button[data-mode="file"]').click();
+    out.style.display = "block";
+    out.innerHTML = `<p class="rationale">✓ Демо завантажено: <b>demo1_hit.mp4</b> + підпис. Тепер натисни «Оцінити».</p>`;
+    $("#go").scrollIntoView({behavior:"smooth", block:"center"});   // load only — user clicks Evaluate
+  }catch(e){
+    out.innerHTML = `<div class="err">Не вдалося завантажити демо: ${esc(e.message||e)}</div>
+      <p style="color:var(--sub);font-size:13px;margin-top:6px">Бекенд запущено? Перевір індикатор у шапці — має бути 🟢 «готово». Демо-відео не входить до репозиторію: додай власний кліп у <code>webapp/static/samples</code> (див. README у тій теці).</p>`;
+  }finally{
+    btn.disabled = false; btn.textContent = "▶ Спробувати на демо-відео";
+  }
+});
+
+$("#go").addEventListener("click", run);
+
+function day1(){
+  const p = parseFloat($("#plays").value), l = parseFloat($("#likes").value);
+  return (Number.isFinite(p) && p>0) ? {plays:p, likes:Number.isFinite(l)?l:0} : null;
+}
+
+async function run(){
+  const out = $("#out"); out.style.display="block";
+  out.innerHTML = `<div><span class="spinner"></span>Витягую ознаки (Whisper + SigLIP + CLAP) і рахую…
+      <span style="color:var(--sub);font-size:13px"> — перше відео може зайняти 10–30 с</span></div>`;
+  $("#go").disabled = true;
+  try{
+    let d1 = null;
+    const auto = mode==="url" && $("#autoD1").checked;
+    if(auto){
+      // checkbox ON -> take the link's current counts (probe them now if not probed yet)
+      const url = $("#url").value.trim();
+      if(url && (!probeData || lastProbed !== url)){ lastProbed = ""; await probeAge(url); }
+      if(probeData && probeData.views != null)
+        d1 = {plays: probeData.views, likes: probeData.likes != null ? probeData.likes : 0};
+    }else{
+      d1 = day1();                                           // manual fields (file mode, or box off)
+    }
+    let r;
+    if(mode==="url"){
+      const url = $("#url").value.trim();
+      if(!url) throw new Error("Встав посилання на відео.");
+      r = await postJSON("/api/score/url", {url, cost_ratio:1.0, day1:d1, language:""});
+    }else{
+      const f = $("#file").files[0];
+      if(!f) throw new Error("Обери відео-файл (або натисни «Спробувати на демо-відео»).");
+      const fd = new FormData();
+      fd.append("file", f); fd.append("caption", $("#cap").value||"");
+      fd.append("cost_ratio", "1.0"); fd.append("language", "");
+      if(d1){ fd.append("plays", d1.plays); fd.append("likes", d1.likes); }
+      r = await postForm("/api/score/file", fd);
+    }
+    render(r, !!d1);
+  }catch(e){ out.innerHTML = `<div class="err">${esc(e.message||e)}</div>`; }
+  finally{ $("#go").disabled = false; }
+}
+
+function verdictRow(tag, rec, prob, sub){
+  const pct = Math.round((prob||0)*100);
+  return `<div class="verdict"><span class="tag">${tag}</span>
+    <div style="flex:1">
+      <span class="pill ${CLS[rec]||"unsure"}">${recUA(rec)}</span>
+      <span class="vmeta"> ймовірність успіху <b>${pct}%</b>${sub?" · "+sub:""}</span>
+      <div class="bar" style="margin-top:8px"><i style="width:${pct}%"></i></div>
+    </div></div>`;
+}
+function recUA(r){return {"Post":"Постити","Do not post":"Не постити","Unsure":"Невпевнено","Keep":"Лишити","Delete":"Видалити"}[r]||r;}
+
+function render(r, hasDay1){
+  const ex = r.extracted||{}, inp = r.inputs||{};
+  // ONE classifier, one verdict. The backend says whether the day-1 head was used.
+  const mainTag = r.used_day1 ? "Оцінка · + день‑1" : "Оцінка · до публікації";
+  let h = verdictRow(mainTag, r.recommendation, r.probability, "");
+  if(r.rationale) h += `<p class="rationale">${esc(r.rationale)}</p>`;
+
+  h += `<div style="margin-top:16px"><h2 style="margin-bottom:10px">Витягнуті ознаки`;
+  if(ex.llm_used && ex.backend) h += ` <span style="color:var(--sub);font-weight:400;font-size:12px">(LLM: ${esc(ex.backend)})</span>`;
+  h += `</h2>`;
+  h += kv("Підпис", esc(inp.caption||"—"));
+  h += kv("Тривалість", inp.duration_s!=null ? Math.round(inp.duration_s)+" с" : "—");
+  if(ex.topic) h += kv("Тема", `<span class="chip">${esc(ex.topic)}</span>`);
+  if(ex.transcript!==undefined){
+    const t = ex.transcript||"";
+    h += kv("Транскрипт", t ? esc(t.slice(0,220))+(t.length>220?"…":"") : "(немає мовлення / Whisper недоступний)");
+  }
+  h += `</div>`;
+  const warns = (r.warnings||[]).slice();
+  if(r.what_model_cannot_know) warns.push(r.what_model_cannot_know);
+  if(warns.length) h += `<div class="warn">${warns.map(esc).join("<br>")}</div>`;
+  $("#out").innerHTML = h;
+  $("#out").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+function kv(k,v){return `<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`;}
+async function postJSON(u,b){const r=await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
+  if(!r.ok) throw new Error((await r.json().catch(()=>({}))).detail||`HTTP ${r.status}`); return r.json();}
+async function postForm(u,fd){const r=await fetch(u,{method:"POST",body:fd});
+  if(!r.ok) throw new Error((await r.json().catch(()=>({}))).detail||`HTTP ${r.status}`); return r.json();}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+
+// readiness dot
+(async function warm(){
+  const el=$("#dot");
+  try{ const h=await fetch("/api/health").then(r=>r.json());
+    if(h.warmup==="warm"){ const llm=(h.llm_backend && h.llm_backend!=="none")?` · LLM: ${esc(h.llm_backend)}`:""; el.innerHTML=`<span style="color:var(--green)">●</span> моделі готові${llm}`; return; }
+    el.innerHTML=`<span style="color:var(--amber)">●</span> завантаження моделей у пам'ять… (перший запуск, ~1 хв)`;
+  }catch{ el.innerHTML=`<span style="color:var(--red)">●</span> бекенд офлайн`; }
+  setTimeout(warm,4000);
+})();
+
+updateD1UI();   // set the day-1 controls to the initial (file) mode
+</script>
+</body>
+</html>

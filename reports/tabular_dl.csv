@@ -1,0 +1,4 @@
+model,auc,note
+hgb,0.551,PCA-64; (xgb~0.555 see model_family)
+FT-Transformer,0.545,"custom, PCA-64"
+TabPFN-v2,,unavailable: TabPFNLicenseError

@@ -1,0 +1,6 @@
+config,auc_beats_own_median,auc_absolute_views
+best-A (content+creator-fit),0.5692,0.7183
++author_history(lifetime),0.5792,0.8658
++author_history+recency(sequence),0.581,0.8668
+author-history ONLY,0.5162,0.7989
+author-history+recency ONLY,0.5288,0.7967

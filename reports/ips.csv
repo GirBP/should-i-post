@@ -1,0 +1,3 @@
+target,weighting,temporal_auc,pred_vs_authorsize_corr
+y_breakout_wc,unweighted,0.5763,0.1639
+y_breakout_wc,IPS(author-size),0.576,0.1678

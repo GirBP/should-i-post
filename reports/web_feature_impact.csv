@@ -1,0 +1,14 @@
+analysis,group,test_auc,marginal_or_drop
+forward_addition,caption_stats,0.5224,0.0224
+forward_addition,duration,0.5212,-0.0011
+forward_addition,timing,0.5183,-0.0029
+forward_addition,flags,0.5194,0.0011
+forward_addition,topic,0.5326,0.0132
+forward_addition,caption_text(tfidf),0.5315,-0.0011
+drop_column,caption_stats,0.5313,0.0002
+drop_column,duration,0.5305,0.001
+drop_column,timing,0.533,-0.0015
+drop_column,flags,0.5327,-0.0012
+drop_column,topic,0.5271,0.0045
+drop_column,caption_text(tfidf),0.5326,-0.0011
+model_B,+day1,0.7144,0.1828

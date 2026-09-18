@@ -1,0 +1,463 @@
+{
+  "n": 262,
+  "authors": 228,
+  "base_rate": 0.6717557251908397,
+  "rows": [
+    {
+      "target": "y_breakout_wc",
+      "config": "TAB",
+      "model": "hgb",
+      "loco_auc": 0.5301,
+      "loco_ci": [
+        0.4586,
+        0.5974
+      ],
+      "temporal_auc": 0.5576,
+      "brier": 0.3981,
+      "n_features": 37,
+      "marginal": null
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+TEXT",
+      "model": "hgb",
+      "loco_auc": 0.5551,
+      "loco_ci": [
+        0.4773,
+        0.6244
+      ],
+      "temporal_auc": 0.5718,
+      "brier": 0.4465,
+      "n_features": 805,
+      "marginal": 0.025
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+AUDIO",
+      "model": "hgb",
+      "loco_auc": 0.5708,
+      "loco_ci": [
+        0.4946,
+        0.6425
+      ],
+      "temporal_auc": 0.5812,
+      "brier": 0.4199,
+      "n_features": 1413,
+      "marginal": 0.0157
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+VIDEO_HOOK",
+      "model": "hgb",
+      "loco_auc": 0.5721,
+      "loco_ci": [
+        0.4986,
+        0.6494
+      ],
+      "temporal_auc": 0.6,
+      "brier": 0.4649,
+      "n_features": 2447,
+      "marginal": 0.0013
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+SigLIP",
+      "model": "hgb",
+      "loco_auc": 0.6237,
+      "loco_ci": [
+        0.555,
+        0.6916
+      ],
+      "temporal_auc": 0.5129,
+      "brier": 0.4989,
+      "n_features": 3215,
+      "marginal": 0.0516
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+creator_fit",
+      "model": "hgb",
+      "loco_auc": 0.6237,
+      "loco_ci": [
+        0.555,
+        0.6916
+      ],
+      "temporal_auc": 0.5129,
+      "brier": 0.4989,
+      "n_features": 3217,
+      "marginal": 0.0
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "+trend",
+      "model": "hgb",
+      "loco_auc": 0.6237,
+      "loco_ci": [
+        0.5554,
+        0.6913
+      ],
+      "temporal_auc": 0.4753,
+      "brier": 0.5034,
+      "n_features": 3219,
+      "marginal": 0.0
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "video=CLIP",
+      "model": "hgb",
+      "loco_auc": 0.5328,
+      "loco_ci": [
+        0.4623,
+        0.6071
+      ],
+      "temporal_auc": 0.3271,
+      "brier": 0.5355,
+      "n_features": 549
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "video=SigLIP",
+      "model": "hgb",
+      "loco_auc": 0.6403,
+      "loco_ci": [
+        0.5745,
+        0.7027
+      ],
+      "temporal_auc": 0.5435,
+      "brier": 0.5172,
+      "n_features": 805
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "video=hookCLIP",
+      "model": "hgb",
+      "loco_auc": 0.583,
+      "loco_ci": [
+        0.5109,
+        0.6557
+      ],
+      "temporal_auc": 0.6047,
+      "brier": 0.4827,
+      "n_features": 549
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "audio=CLAP",
+      "model": "hgb",
+      "loco_auc": 0.592,
+      "loco_ci": [
+        0.525,
+        0.6631
+      ],
+      "temporal_auc": 0.5882,
+      "brier": 0.4459,
+      "n_features": 549
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "audio=lowlevel",
+      "model": "hgb",
+      "loco_auc": 0.5599,
+      "loco_ci": [
+        0.4931,
+        0.6259
+      ],
+      "temporal_auc": 0.4518,
+      "brier": 0.4759,
+      "n_features": 133
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "visual_lowlevel",
+      "model": "hgb",
+      "loco_auc": 0.5629,
+      "loco_ci": [
+        0.4955,
+        0.6319
+      ],
+      "temporal_auc": 0.5294,
+      "brier": 0.4467,
+      "n_features": 47
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "fusion=late(mean-logreg)",
+      "model": "late",
+      "loco_auc": 0.5738,
+      "loco_ci": [
+        0.4997,
+        0.6464
+      ],
+      "temporal_auc": null,
+      "brier": null,
+      "n_features": null
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "fusion=early(HGB)",
+      "model": "hgb",
+      "loco_auc": 0.6237,
+      "loco_ci": [
+        0.555,
+        0.6916
+      ],
+      "temporal_auc": 0.5129,
+      "brier": 0.4989,
+      "n_features": 3215
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "fusion=neural(MLP)",
+      "model": "mlp",
+      "loco_auc": 0.5282,
+      "loco_ci": [
+        0.4532,
+        0.606
+      ],
+      "temporal_auc": 0.5271,
+      "brier": 0.4971,
+      "n_features": 3215
+    },
+    {
+      "target": "y_breakout_wc",
+      "config": "B_full(+day1)",
+      "model": "hgb",
+      "loco_auc": 0.9152,
+      "loco_ci": [
+        0.8651,
+        0.9509
+      ],
+      "temporal_auc": 0.9176,
+      "brier": 0.2033,
+      "n_features": 3219
+    },
+    {
+      "target": "y_er_wc",
+      "config": "TAB",
+      "model": "hgb",
+      "loco_auc": 0.4728,
+      "loco_ci": [
+        0.4067,
+        0.5423
+      ],
+      "temporal_auc": 0.4097,
+      "brier": 0.3767,
+      "n_features": 37,
+      "marginal": null
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+TEXT",
+      "model": "hgb",
+      "loco_auc": 0.569,
+      "loco_ci": [
+        0.5068,
+        0.6346
+      ],
+      "temporal_auc": 0.3449,
+      "brier": 0.4016,
+      "n_features": 805,
+      "marginal": 0.0962
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+AUDIO",
+      "model": "hgb",
+      "loco_auc": 0.5253,
+      "loco_ci": [
+        0.4548,
+        0.5972
+      ],
+      "temporal_auc": 0.4514,
+      "brier": 0.3414,
+      "n_features": 1413,
+      "marginal": -0.0437
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+VIDEO_HOOK",
+      "model": "hgb",
+      "loco_auc": 0.5321,
+      "loco_ci": [
+        0.4689,
+        0.6023
+      ],
+      "temporal_auc": 0.625,
+      "brier": 0.2709,
+      "n_features": 2447,
+      "marginal": 0.0068
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+SigLIP",
+      "model": "hgb",
+      "loco_auc": 0.5614,
+      "loco_ci": [
+        0.4876,
+        0.6302
+      ],
+      "temporal_auc": 0.6435,
+      "brier": 0.2621,
+      "n_features": 3215,
+      "marginal": 0.0293
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+creator_fit",
+      "model": "hgb",
+      "loco_auc": 0.5614,
+      "loco_ci": [
+        0.4876,
+        0.6302
+      ],
+      "temporal_auc": 0.6435,
+      "brier": 0.2621,
+      "n_features": 3217,
+      "marginal": 0.0
+    },
+    {
+      "target": "y_er_wc",
+      "config": "+trend",
+      "model": "hgb",
+      "loco_auc": 0.5614,
+      "loco_ci": [
+        0.4876,
+        0.6302
+      ],
+      "temporal_auc": 0.6435,
+      "brier": 0.2621,
+      "n_features": 3219,
+      "marginal": 0.0
+    },
+    {
+      "target": "y_er_wc",
+      "config": "video=CLIP",
+      "model": "hgb",
+      "loco_auc": 0.5453,
+      "loco_ci": [
+        0.4833,
+        0.6189
+      ],
+      "temporal_auc": 0.5162,
+      "brier": 0.3572,
+      "n_features": 549
+    },
+    {
+      "target": "y_er_wc",
+      "config": "video=SigLIP",
+      "model": "hgb",
+      "loco_auc": 0.5378,
+      "loco_ci": [
+        0.4637,
+        0.6057
+      ],
+      "temporal_auc": 0.6065,
+      "brier": 0.2913,
+      "n_features": 805
+    },
+    {
+      "target": "y_er_wc",
+      "config": "video=hookCLIP",
+      "model": "hgb",
+      "loco_auc": 0.5066,
+      "loco_ci": [
+        0.4462,
+        0.5777
+      ],
+      "temporal_auc": 0.6134,
+      "brier": 0.2734,
+      "n_features": 549
+    },
+    {
+      "target": "y_er_wc",
+      "config": "audio=CLAP",
+      "model": "hgb",
+      "loco_auc": 0.4519,
+      "loco_ci": [
+        0.3862,
+        0.5296
+      ],
+      "temporal_auc": 0.4606,
+      "brier": 0.374,
+      "n_features": 549
+    },
+    {
+      "target": "y_er_wc",
+      "config": "audio=lowlevel",
+      "model": "hgb",
+      "loco_auc": 0.4851,
+      "loco_ci": [
+        0.4082,
+        0.5564
+      ],
+      "temporal_auc": 0.4745,
+      "brier": 0.3455,
+      "n_features": 133
+    },
+    {
+      "target": "y_er_wc",
+      "config": "visual_lowlevel",
+      "model": "hgb",
+      "loco_auc": 0.5731,
+      "loco_ci": [
+        0.5095,
+        0.6488
+      ],
+      "temporal_auc": 0.5255,
+      "brier": 0.3043,
+      "n_features": 47
+    },
+    {
+      "target": "y_er_wc",
+      "config": "fusion=late(mean-logreg)",
+      "model": "late",
+      "loco_auc": 0.4909,
+      "loco_ci": [
+        0.4212,
+        0.5593
+      ],
+      "temporal_auc": null,
+      "brier": null,
+      "n_features": null
+    },
+    {
+      "target": "y_er_wc",
+      "config": "fusion=early(HGB)",
+      "model": "hgb",
+      "loco_auc": 0.5614,
+      "loco_ci": [
+        0.4876,
+        0.6302
+      ],
+      "temporal_auc": 0.6435,
+      "brier": 0.2621,
+      "n_features": 3215
+    },
+    {
+      "target": "y_er_wc",
+      "config": "fusion=neural(MLP)",
+      "model": "mlp",
+      "loco_auc": 0.5229,
+      "loco_ci": [
+        0.4525,
+        0.6008
+      ],
+      "temporal_auc": 0.5532,
+      "brier": 0.3475,
+      "n_features": 3215
+    },
+    {
+      "target": "y_er_wc",
+      "config": "B_full(+day1)",
+      "model": "hgb",
+      "loco_auc": 0.7161,
+      "loco_ci": [
+        0.6475,
+        0.7782
+      ],
+      "temporal_auc": 0.6644,
+      "brier": 0.2817,
+      "n_features": 3219
+    }
+  ]
+}

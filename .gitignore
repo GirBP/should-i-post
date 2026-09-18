@@ -1,0 +1,39 @@
+# raw data is NOT committed (CC BY-NC 4.0; reproduce via the documented download step)
+data/raw/
+data/processed/
+data/videos/
+data/multimodal/features.parquet
+data/multimodal/*.mp4
+data/multimodal/manifest*.csv
+# runtime self-learning store (SQLite) — auto-created on first use, never versioned
+data/flywheel.db
+data/flywheel.db-*
+
+# SnapUGC transfer subset (raw videos + labels; reproduce via scripts/download_snapugc.py)
+data/snapugc/
+
+# trained artifacts are generated & derive from the dataset -> regenerate with experiments/build_deployable.py
+models/*
+!models/.gitkeep
+
+# large logs / scratch
+reports/_*.log
+reports/plots/*.png
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# scratch
+.gitkeep_seed
+demo_videos/
+.env
+
+# Claude Code worktrees/config
+.claude/

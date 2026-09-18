@@ -1,0 +1,6 @@
+мітка,base_rate,fame_leak_AUC,content_AUC_A,early_AUC_B,spearman_vs_ER
+within-creator ER,0.492,0.509,0.544,0.808,1.0
+breakout,0.501,0.721,0.607,0.782,-0.057
+follower_grow,0.488,0.543,0.606,0.644,-0.031
+abs_views,0.515,0.793,0.676,0.989,-0.071
+breakout (within-creator),0.501,0.511,0.529,0.936,-0.074

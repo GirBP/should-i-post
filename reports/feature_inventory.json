@@ -1,0 +1,67 @@
+{
+ "A": {
+  "total": 797,
+  "by_group": {
+   "caption text stats": 12,
+   "posting time": 7,
+   "duration": 6,
+   "meta flags": 4,
+   "text embedding (BGE)": 768
+  }
+ },
+ "B": {
+  "total": 800,
+  "by_group": {
+   "caption text stats": 12,
+   "posting time": 7,
+   "duration": 6,
+   "meta flags": 4,
+   "text embedding (BGE)": 768,
+   "day-1 engagement": 3
+  }
+ },
+ "tabular_names": {
+  "caption": [
+   "allcaps_ratio",
+   "caption_is_empty",
+   "char_len",
+   "digit_ratio",
+   "has_cta",
+   "has_exclam",
+   "has_question",
+   "has_url",
+   "n_emoji",
+   "n_hashtags",
+   "n_mentions",
+   "word_len"
+  ],
+  "posting time": [
+   "dow_cos",
+   "dow_sin",
+   "hour_cos",
+   "hour_sin",
+   "is_weekend",
+   "month_cos",
+   "month_sin"
+  ],
+  "duration": [
+   "dur_long",
+   "dur_mid",
+   "dur_short",
+   "dur_vlong",
+   "dur_vshort",
+   "duration_s"
+  ],
+  "meta": [
+   "aspect",
+   "created_by_ai_i",
+   "is_ads_i",
+   "is_english_i"
+  ],
+  "day-1 (Model B only)": [
+   "log_play_d1",
+   "log_like_d1",
+   "er_d1"
+  ]
+ }
+}

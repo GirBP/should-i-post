@@ -1,0 +1,415 @@
+{
+  "n": 10000,
+  "balance": {
+    "0": 5000,
+    "1": 5000
+  },
+  "mm_parquet": "data/multimodal/features_tiktok.parquet",
+  "folds": 5,
+  "configs": {
+    "hand": {
+      "roc_auc": 0.5564,
+      "pr_auc": 0.5313,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.543,
+          "recall": 0.483,
+          "f1": 0.512,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.535,
+          "recall": 0.594,
+          "f1": 0.563,
+          "support": 5000
+        },
+        "macro_f1": 0.537,
+        "confusion": {
+          "tn": 2417,
+          "fp": 2583,
+          "fn": 2031,
+          "tp": 2969
+        }
+      },
+      "at_f1opt": {
+        "t": 0.195,
+        "neg": {
+          "precision": 0.988,
+          "recall": 0.082,
+          "f1": 0.152,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.521,
+          "recall": 0.999,
+          "f1": 0.685,
+          "support": 5000
+        },
+        "macro_f1": 0.418,
+        "confusion": {
+          "tn": 411,
+          "fp": 4589,
+          "fn": 5,
+          "tp": 4995
+        }
+      }
+    },
+    "hand+video": {
+      "roc_auc": 0.5924,
+      "pr_auc": 0.5644,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.572,
+          "recall": 0.511,
+          "f1": 0.54,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.558,
+          "recall": 0.618,
+          "f1": 0.587,
+          "support": 5000
+        },
+        "macro_f1": 0.563,
+        "confusion": {
+          "tn": 2554,
+          "fp": 2446,
+          "fn": 1910,
+          "tp": 3090
+        }
+      },
+      "at_f1opt": {
+        "t": 0.15,
+        "neg": {
+          "precision": 1.0,
+          "recall": 0.078,
+          "f1": 0.144,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.52,
+          "recall": 1.0,
+          "f1": 0.684,
+          "support": 5000
+        },
+        "macro_f1": 0.414,
+        "confusion": {
+          "tn": 388,
+          "fp": 4612,
+          "fn": 0,
+          "tp": 5000
+        }
+      }
+    },
+    "hand+audio": {
+      "roc_auc": 0.5601,
+      "pr_auc": 0.5419,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.547,
+          "recall": 0.484,
+          "f1": 0.514,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.537,
+          "recall": 0.598,
+          "f1": 0.566,
+          "support": 5000
+        },
+        "macro_f1": 0.54,
+        "confusion": {
+          "tn": 2421,
+          "fp": 2579,
+          "fn": 2008,
+          "tp": 2992
+        }
+      },
+      "at_f1opt": {
+        "t": 0.225,
+        "neg": {
+          "precision": 0.985,
+          "recall": 0.081,
+          "f1": 0.15,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.521,
+          "recall": 0.999,
+          "f1": 0.685,
+          "support": 5000
+        },
+        "macro_f1": 0.417,
+        "confusion": {
+          "tn": 405,
+          "fp": 4595,
+          "fn": 6,
+          "tp": 4994
+        }
+      }
+    },
+    "hand+video+audio": {
+      "roc_auc": 0.5902,
+      "pr_auc": 0.5653,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.566,
+          "recall": 0.513,
+          "f1": 0.538,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.554,
+          "recall": 0.606,
+          "f1": 0.579,
+          "support": 5000
+        },
+        "macro_f1": 0.559,
+        "confusion": {
+          "tn": 2567,
+          "fp": 2433,
+          "fn": 1972,
+          "tp": 3028
+        }
+      },
+      "at_f1opt": {
+        "t": 0.2,
+        "neg": {
+          "precision": 0.99,
+          "recall": 0.079,
+          "f1": 0.147,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.52,
+          "recall": 0.999,
+          "f1": 0.684,
+          "support": 5000
+        },
+        "macro_f1": 0.416,
+        "confusion": {
+          "tn": 397,
+          "fp": 4603,
+          "fn": 4,
+          "tp": 4996
+        }
+      }
+    },
+    "video_only": {
+      "roc_auc": 0.5612,
+      "pr_auc": 0.5464,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.546,
+          "recall": 0.537,
+          "f1": 0.541,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.544,
+          "recall": 0.553,
+          "f1": 0.548,
+          "support": 5000
+        },
+        "macro_f1": 0.545,
+        "confusion": {
+          "tn": 2686,
+          "fp": 2314,
+          "fn": 2237,
+          "tp": 2763
+        }
+      },
+      "at_f1opt": {
+        "t": 0.17,
+        "neg": {
+          "precision": 0.773,
+          "recall": 0.003,
+          "f1": 0.007,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.501,
+          "recall": 0.999,
+          "f1": 0.667,
+          "support": 5000
+        },
+        "macro_f1": 0.337,
+        "confusion": {
+          "tn": 17,
+          "fp": 4983,
+          "fn": 5,
+          "tp": 4995
+        }
+      }
+    },
+    "audio_only": {
+      "roc_auc": 0.5244,
+      "pr_auc": 0.5244,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.519,
+          "recall": 0.51,
+          "f1": 0.515,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.519,
+          "recall": 0.527,
+          "f1": 0.523,
+          "support": 5000
+        },
+        "macro_f1": 0.519,
+        "confusion": {
+          "tn": 2552,
+          "fp": 2448,
+          "fn": 2363,
+          "tp": 2637
+        }
+      },
+      "at_f1opt": {
+        "t": 0.23,
+        "neg": {
+          "precision": 0.694,
+          "recall": 0.007,
+          "f1": 0.013,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.501,
+          "recall": 0.997,
+          "f1": 0.667,
+          "support": 5000
+        },
+        "macro_f1": 0.34,
+        "confusion": {
+          "tn": 34,
+          "fp": 4966,
+          "fn": 15,
+          "tp": 4985
+        }
+      }
+    },
+    "video+audio_only": {
+      "roc_auc": 0.5629,
+      "pr_auc": 0.5485,
+      "at_0.5": {
+        "t": 0.5,
+        "neg": {
+          "precision": 0.552,
+          "recall": 0.546,
+          "f1": 0.549,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.551,
+          "recall": 0.557,
+          "f1": 0.554,
+          "support": 5000
+        },
+        "macro_f1": 0.552,
+        "confusion": {
+          "tn": 2729,
+          "fp": 2271,
+          "fn": 2213,
+          "tp": 2787
+        }
+      },
+      "at_f1opt": {
+        "t": 0.145,
+        "neg": {
+          "precision": 0.833,
+          "recall": 0.001,
+          "f1": 0.002,
+          "support": 5000
+        },
+        "pos": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
+          "support": 5000
+        },
+        "macro_f1": 0.334,
+        "confusion": {
+          "tn": 5,
+          "fp": 4995,
+          "fn": 1,
+          "tp": 4999
+        }
+      }
+    }
+  },
+  "deltas_vs_hand": {
+    "hand+video": {
+      "pos_f1_delta": [
+        0.0109,
+        0.0236,
+        0.0366
+      ],
+      "pos_recall_delta": [
+        0.0071,
+        0.0238,
+        0.0419
+      ],
+      "pr_auc_delta": [
+        0.019,
+        0.0329,
+        0.0472
+      ],
+      "roc_auc_delta": [
+        0.0225,
+        0.036,
+        0.0502
+      ]
+    },
+    "hand+audio": {
+      "pos_f1_delta": [
+        -0.0093,
+        0.0032,
+        0.0161
+      ],
+      "pos_recall_delta": [
+        -0.0136,
+        0.0045,
+        0.0229
+      ],
+      "pr_auc_delta": [
+        -0.003,
+        0.0106,
+        0.0248
+      ],
+      "roc_auc_delta": [
+        -0.0091,
+        0.0039,
+        0.018
+      ]
+    },
+    "hand+video+audio": {
+      "pos_f1_delta": [
+        0.0027,
+        0.016,
+        0.0297
+      ],
+      "pos_recall_delta": [
+        -0.0063,
+        0.0114,
+        0.0304
+      ],
+      "pr_auc_delta": [
+        0.0198,
+        0.0338,
+        0.0492
+      ],
+      "roc_auc_delta": [
+        0.0204,
+        0.0337,
+        0.0484
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+feature,univariate_auc,signed_lift,spearman_vs_success,direction
+word_count,0.5507,0.0507,0.0906,↑ helps
+question_count,0.5191,0.0191,0.0558,↑ helps
+caption_len,0.5173,0.0173,0.03,↑ helps
+arousal,0.5159,0.0159,0.0276,↑ helps
+anger,0.5151,0.0151,0.0261,↑ helps
+duration_s,0.4897,-0.0103,-0.0178,↓ hurts
+joy,0.4908,-0.0092,-0.0159,↓ hurts
+is_weekend,0.5085,0.0085,0.0195,↑ helps
+is_english,0.5077,0.0077,0.0161,↑ helps
+hashtag_count,0.5074,0.0074,0.0135,↑ helps
+creator_followers_log,0.4935,-0.0065,-0.0113,↓ hurts
+fear,0.5063,0.0063,0.0109,↑ helps
+speaking_rate,0.504,0.004,0.0089,↑ helps
+surprise,0.5032,0.0032,0.0056,↑ helps
+sadness,0.4982,-0.0018,-0.0032,↓ hurts
+music_popularity_log,0.5005,0.0005,0.0009,↑ helps
+created_by_ai,0.4999,-0.0001,-0.0021,↓ hurts
+emoji_count,0.5,-0.0,-0.0001,↓ hurts

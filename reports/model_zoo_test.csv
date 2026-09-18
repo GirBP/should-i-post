@@ -1,0 +1,5 @@
+tag,model,auc,ci_lo,ci_hi,brier
+test,HGB (trees),0.5197,0.483,0.556,0.3016
+test,Linear probe,0.5116,0.478,0.545,0.4347
+test,MLP (2-hidden),0.4903,0.452,0.527,0.2555
+test,Gated fusion,0.4962,0.459,0.53,0.2568

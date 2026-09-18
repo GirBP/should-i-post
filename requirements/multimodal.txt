@@ -1,0 +1,10 @@
+# SigLIP + CLAP video-boost extras (only for `./run_all.sh --with-multimodal`, or the root
+# Dockerfile's video path). ffmpeg system binary required: brew install ffmpeg
+-r base.txt
+
+open_clip_torch
+timm
+opencv-python-headless
+librosa
+soundfile
+audioread

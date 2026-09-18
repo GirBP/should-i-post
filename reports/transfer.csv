@@ -1,0 +1,5 @@
+target,config,loco_auc,loco_ci,n
+y_breakout_wc,mm_best,0.6539,"[0.5886, 0.7234]",262
+y_breakout_wc,mm_best+retention,0.6409,"[0.5755, 0.7136]",262
+y_er_wc,mm_best,0.4969,"[0.4339, 0.5631]",262
+y_er_wc,mm_best+retention,0.4936,"[0.4283, 0.5635]",262

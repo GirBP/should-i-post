@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShouldIPost?</title>
+<style>
+  :root{
+    --ink:#1d1d1f; --sub:#6e6e73; --line:#e3e3e6; --bg:#fbfbfd; --card:#ffffff;
+    --accent:#0071e3; --green:#1a7f37; --red:#d70015; --amber:#9a6700;
+    --radius:18px; --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+       color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px 96px}
+  header{text-align:center;padding:76px 0 44px}
+  header h1{font-size:52px;font-weight:600;letter-spacing:-.022em}
+  header h1 .q{color:var(--accent)}
+  header p{color:var(--sub);font-size:20px;margin-top:10px;font-weight:400}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+        box-shadow:var(--shadow);padding:26px;margin-bottom:20px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--sub);margin:0 0 7px;letter-spacing:.01em}
+  textarea,input{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
+        border:1px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .15s}
+  textarea:focus,input:focus{border-color:var(--accent)}
+  textarea{resize:vertical;min-height:74px}
+  .row{display:flex;gap:14px}.row>div{flex:1}
+  .field{margin-bottom:18px}.field:last-child{margin-bottom:0}
+  details{margin-top:4px}
+  summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--accent);list-style:none;padding:6px 0}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";font-weight:700}
+  details[open] summary::before{content:"– "}
+  .btn{display:block;width:100%;margin-top:8px;background:var(--accent);color:#fff;border:0;
+       border-radius:980px;padding:15px;font-size:17px;font-weight:500;cursor:pointer;transition:opacity .15s}
+  .btn:hover{opacity:.9}.btn:active{opacity:.8}
+  .out{display:none;margin-top:6px}
+  .verdict{display:flex;align-items:baseline;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .verdict:last-child{border-bottom:0}
+  .pill{font-size:22px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+  .pill.post,.pill.keep{color:var(--green)} .pill.stop,.pill.delete{color:var(--red)} .pill.unsure{color:var(--amber)}
+  .vmeta{color:var(--sub);font-size:14px}
+  .vmeta b{color:var(--ink);font-weight:600}
+  .tag{font-size:11px;font-weight:700;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;min-width:74px}
+  .note{color:var(--sub);font-size:13px;margin-top:16px;line-height:1.55}
+  h2{font-size:15px;font-weight:600;margin-bottom:16px;letter-spacing:-.01em}
+  .kv{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .kv:last-child{border-bottom:0}.kv span:first-child{color:var(--sub)}.kv b{font-weight:600}
+  .dl{display:flex;gap:12px}.dl a{flex:1;text-align:center;text-decoration:none;color:var(--accent);
+       border:1px solid var(--line);border-radius:12px;padding:13px;font-size:15px;font-weight:500;transition:background .15s}
+  .dl a:hover{background:#f5f5f7}
+  .mc p{font-size:14px;color:var(--sub);margin-bottom:12px}.mc p:last-child{margin-bottom:0}
+  .mc b{color:var(--ink)}
+  footer{text-align:center;color:var(--sub);font-size:12px;padding-top:8px}
+  @media(max-width:520px){header h1{font-size:40px}.row{flex-direction:column;gap:0}.row>div{margin-bottom:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ShouldIPost<span class="q">?</span></h1>
+    <p>Оцінка TikTok-відео до публікації — чесно, з абстенцією</p>
+  </header>
+
+  <div class="card">
+    <div class="field"><label>Опис / підпис (caption)</label>
+      <textarea id="caption" placeholder="Напиши підпис так, як плануєш опублікувати…"></textarea></div>
+    <div class="field"><div class="row">
+      <div><label>Тривалість, с</label><input id="duration" type="number" value="15" min="1" max="600"></div>
+      <div><label>Час публікації</label><input id="post_time" type="datetime-local"></div>
+    </div></div>
+    <details><summary>Додати сигнал за першу добу (Model B: лишати / видаляти)</summary>
+      <div class="row" style="margin-top:14px">
+        <div><label>Перегляди day-1</label><input id="plays" type="number" placeholder="напр. 8000"></div>
+        <div><label>Лайки day-1</label><input id="likes" type="number" placeholder="напр. 600"></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div><label>Коментарі</label><input id="comments" type="number" placeholder="0"></div>
+        <div><label>Репости</label><input id="shares" type="number" placeholder="0"></div>
+      </div>
+    </details>
+    <button class="btn" onclick="run()">Оцінити</button>
+  </div>
+
+  <div class="card out" id="out">
+    <div class="verdict"><span class="tag">До постингу</span>
+      <span class="pill" id="pa"></span><span class="vmeta" id="ma"></span></div>
+    <div class="verdict" id="rowb"><span class="tag">Через 24 год</span>
+      <span class="pill" id="pb"></span><span class="vmeta" id="mb"></span></div>
+    <p class="note" id="note"></p>
+  </div>
+
+  <div class="card">
+    <h2>Завантажити моделі</h2>
+    <div class="dl"><a href="/download/a">Model A · .joblib</a><a href="/download/b">Model B · .joblib</a></div>
+  </div>
+
+  <div class="card mc">
+    <h2>Модель-картка · методологія</h2>
+    <p><b>Задача.</b> Бінарна класифікація ймовірності з <b>reject-option</b> (selective classification):
+      Post / Do-not-post / <b>Unsure</b> до публікації; Keep / Delete через день-1. «Unsure» —
+      каліброване визнання невпевненості, не окремий клас.</p>
+    <p><b>Мітка.</b> «Breakout within-creator» @ H=14 — чи відео перевершило медіану <b>власного</b> автора.
+      <b>Fame-neutral</b>: класифікатор лише на розмірі аудиторії дає AUC ≈ 0.51 (перевірено).</p>
+    <p><b>Чесна стеля.</b> До публікації задача <b>інформаційно обмежена</b> (перші секунди утримання,
+      алгоритм, тренд — не видно): Model A ≈ 0.58, і сильніша модель її не рухає. День-1 сигнал підіймає
+      Model B до ≈ 0.75 — там надійне рішення.</p>
+    <p><b>Дисципліна.</b> Нуль post-publication метрик на вхід Model A; усе fit лише на train; leave-one-creator-out
+      + temporal спліти; bootstrap 95% CI. Ці моделі — 33 прості hand-фічі (текст, час, тривалість), torch-free.</p>
+    <div class="kv"><span>Model A · ROC-AUC (LOCO)</span><b>0.58</b></div>
+    <div class="kv"><span>Model B · ROC-AUC (LOCO)</span><b>0.75</b></div>
+    <div class="kv"><span>Навчено на</span><b>10 000 реальних TikTok</b></div>
+  </div>
+
+  <footer>Прогноз — не оракул. Постити, коли невпевнено, і давати день-1 вирішити.</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+function pillClass(v){return {"Post":"post","Do not post":"stop","Unsure":"unsure","Keep":"keep","Delete":"delete"}[v]||"unsure"}
+async function run(){
+  const num = id => { const v = parseFloat($(id).value); return isNaN(v) ? null : v; };
+  const day1 = {plays:num('plays'),likes:num('likes'),comments:num('comments'),shares:num('shares')};
+  const hasD1 = day1.plays!=null || day1.likes!=null;
+  const body = {caption:$('caption').value, duration:num('duration'), post_time:$('post_time').value,
+                day1: hasD1 ? day1 : null};
+  let r;
+  try{ r = await (await fetch('/api/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json(); }
+  catch(e){ alert('Помилка з’єднання'); return; }
+  const a = r.model_A;
+  $('pa').textContent = a.verdict; $('pa').className = 'pill '+pillClass(a.verdict);
+  $('ma').innerHTML = 'ймовірність успіху <b>'+(a.probability*100).toFixed(0)+'%</b>';
+  if(r.model_B){ $('rowb').style.display='flex'; const b=r.model_B;
+    $('pb').textContent = b.verdict==='Keep'?'Лишити':'Видалити'; $('pb').className='pill '+pillClass(b.verdict);
+    $('mb').innerHTML = 'ймовірність успіху <b>'+(b.probability*100).toFixed(0)+'%</b> · '+
+      (b.verdict==='Delete'?'day-1 слабкий → безпечно видалити':'day-1 тримається → лишити');
+  } else $('rowb').style.display='none';
+  $('note').textContent = r.note; $('out').style.display='block';
+  $('out').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.querySelector('#post_time').value = new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+</script>
+</body>
+</html>

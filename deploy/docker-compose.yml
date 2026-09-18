@@ -1,0 +1,37 @@
+# ShouldIPost? — DigitalOcean Droplet stack: full app behind Caddy (auto-HTTPS, big uploads).
+#   cd deploy && SITE_ADDRESS=your.domain docker compose up -d --build
+# Set SITE_ADDRESS to a domain for automatic HTTPS, or leave unset to serve HTTP on the droplet IP.
+services:
+  app:
+    build: ..                       # build context = repo root (uses the fixed root Dockerfile)
+    image: shouldipost:latest
+    restart: unless-stopped
+    environment:
+      - SIP_DEVICE=cpu
+      - SIP_LLM=${SIP_LLM:-none}    # none = transcript-only; or deepseek/haiku + a key below
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    volumes:
+      - hf_cache:/app/.hf_cache     # persist downloaded SigLIP/CLAP/Whisper/BGE (~few GB) across restarts
+    expose:
+      - "8080"                      # internal only; Caddy is the public edge
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - SITE_ADDRESS=${SITE_ADDRESS:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data            # persisted TLS certificates
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  hf_cache:
+  caddy_data:
+  caddy_config:

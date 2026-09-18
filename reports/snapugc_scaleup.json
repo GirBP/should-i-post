@@ -1,0 +1,58 @@
+{
+  "title": "SnapUGC scale-up \u2014 watch-retention transfer at 68x data",
+  "download": {
+    "baseline_videos": 150,
+    "videos": 10137,
+    "scale_x": 68,
+    "size_gb": 15,
+    "cdn_live_frac_approx": 0.5,
+    "source": "SnapUGC (ECCV 2024) train CSV = per-video Snapchat-CDN links + ECR label",
+    "method": "multithreaded downloader (24 workers), ~35 videos/s, ~40 MB/s; official dataset CDN, no block-evasion"
+  },
+  "extraction": {
+    "encoders": [
+      "CLIP-512",
+      "SigLIP-768",
+      "CLAP-512"
+    ],
+    "dim": 1792,
+    "device": "mps",
+    "method": "parallel video decode (8 threads, cv2/ffmpeg) + serial MPS encode",
+    "n_embedded": 10137
+  },
+  "ablation": {
+    "note": "LOCO ROC-AUC on the 262 lingbow multimodal videos. An ECR watch-retention head is trained on SnapUGC content embeddings, then applied to lingbow as a `retention_head` feature and ablated (mm_best vs mm_best+retention).",
+    "runs": [
+      {
+        "label": "baseline (150 SnapUGC)",
+        "n_snapugc_head": 150,
+        "head_spearman_ecr": 0.317,
+        "breakout": {
+          "mm_best": 0.6539,
+          "mm_best_retention": 0.6533,
+          "delta": -0.0006
+        },
+        "er": {
+          "mm_best": 0.4969,
+          "mm_best_retention": 0.4962,
+          "delta": -0.0007
+        }
+      },
+      {
+        "label": "scale-up (10137 SnapUGC)",
+        "n_snapugc_head": 10137,
+        "head_spearman_ecr": 0.451,
+        "breakout": {
+          "mm_best": 0.6539,
+          "mm_best_retention": 0.6409,
+          "delta": -0.013
+        },
+        "er": {
+          "mm_best": 0.4969,
+          "mm_best_retention": 0.4936,
+          "delta": -0.0033
+        }
+      }
+    ]
+  }
+}

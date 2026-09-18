@@ -1,0 +1,4 @@
+# Test dependencies, on top of base.
+-r base.txt
+
+pytest>=8.0

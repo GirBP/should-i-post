@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ShouldIPost?</title>
+<style>
+  html,body{margin:0;height:100%;font-family:-apple-system,Segoe UI,Roboto,Helvetica,sans-serif;background:#fbfbfa;}
+  .switchbar{position:sticky;top:0;z-index:10;display:flex;justify-content:center;
+    background:#fff;border-bottom:1px solid #e7e7e7;padding:9px;}
+  .seg{display:inline-flex;background:#eef0f2;border-radius:999px;padding:4px;}
+  .seg button{border:0;background:transparent;padding:8px 20px;border-radius:999px;
+    font:500 14px inherit;color:#6a6a6a;cursor:pointer;transition:.15s;}
+  .seg button.on{background:#fff;color:#161616;box-shadow:0 1px 3px rgba(0,0,0,.12);}
+  iframe{border:0;width:100%;height:calc(100vh - 53px);display:block;background:#fbfbfa;}
+</style>
+</head>
+<body>
+  <div class="switchbar">
+    <div class="seg" id="seg">
+      <button id="b-landing" class="on">Research &amp; demo</button>
+      <button id="b-app">Score a video (upload / link)</button>
+    </div>
+  </div>
+  <iframe id="frame" src="/static/landing.html" title="ShouldIPost"></iframe>
+  <script>
+    var frame = document.getElementById("frame");
+    var bL = document.getElementById("b-landing"), bA = document.getElementById("b-app");
+    function show(page) {
+      var isApp = page === "app";
+      frame.src = isApp ? "/static/calculator.html" : "/static/landing.html";
+      bA.classList.toggle("on", isApp);
+      bL.classList.toggle("on", !isApp);
+    }
+    bL.onclick = function () { show("landing"); };
+    bA.onclick = function () { show("app"); };
+  </script>
+</body>
+</html>

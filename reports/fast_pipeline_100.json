@@ -1,0 +1,1043 @@
+{
+  "n": 100,
+  "balance": {
+    "1": 50,
+    "0": 50
+  },
+  "protocol": "StratifiedGroupKFold by author (leakage-safe)",
+  "n_features": 1693,
+  "model": "hgb",
+  "bands": {
+    "t_low": 0.155,
+    "t_high": 0.8499
+  },
+  "metrics": {
+    "roc_auc": 0.6828,
+    "roc_auc_ci": [
+      0.5801,
+      0.7853
+    ],
+    "pr_auc": 0.7346,
+    "brier": 0.246
+  },
+  "band_report": {
+    "Post": {
+      "coverage": 0.2,
+      "n": 20,
+      "base_rate": 0.85
+    },
+    "Unsure": {
+      "coverage": 0.6,
+      "n": 60,
+      "base_rate": 0.45
+    },
+    "Do not post": {
+      "coverage": 0.2,
+      "n": 20,
+      "base_rate": 0.3
+    },
+    "abstain_coverage": 0.6
+  },
+  "assessments": [
+    {
+      "video_id": "7384560482331512095",
+      "author_id": "6790441274577093637",
+      "caption": "",
+      "duration_s": 6.106,
+      "prob_success": 0.2152,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7415064195202321694",
+      "author_id": "1478221",
+      "caption": "",
+      "duration_s": 14.419,
+      "prob_success": 0.2125,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7426907774820306206",
+      "author_id": "6964376699194868741",
+      "caption": "",
+      "duration_s": 9.267,
+      "prob_success": 0.4586,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7411238229489241386",
+      "author_id": "7070324905034646574",
+      "caption": "",
+      "duration_s": 31.339,
+      "prob_success": 0.4217,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7394997034857549098",
+      "author_id": "6759666429061301253",
+      "caption": "",
+      "duration_s": 4.9,
+      "prob_success": 0.8805,
+      "verdict": "Post",
+      "true_breakout": 0,
+      "correct": false
+    },
+    {
+      "video_id": "7435006512659057950",
+      "author_id": "6653944446626234374",
+      "caption": "",
+      "duration_s": 10.007,
+      "prob_success": 0.3587,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7426269101942787358",
+      "author_id": "7079868950499902510",
+      "caption": "",
+      "duration_s": 6.013,
+      "prob_success": 0.8481,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7383937294266371370",
+      "author_id": "6878417280574735366",
+      "caption": "",
+      "duration_s": 6.867,
+      "prob_success": 0.7183,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7424170238842883370",
+      "author_id": "6807941567060820998",
+      "caption": "",
+      "duration_s": 61.834,
+      "prob_success": 0.2095,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7400160431546879278",
+      "author_id": "6760848547787326470",
+      "caption": "",
+      "duration_s": 124.634,
+      "prob_success": 0.1178,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7408996104714390826",
+      "author_id": "7353681",
+      "caption": "",
+      "duration_s": 5.316,
+      "prob_success": 0.9062,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7407640841252080926",
+      "author_id": "6929590706865931270",
+      "caption": "",
+      "duration_s": 6.2,
+      "prob_success": 0.429,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7411894014410018078",
+      "author_id": "6652131259286700038",
+      "caption": "",
+      "duration_s": 9.967,
+      "prob_success": 0.9016,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7397102497879346462",
+      "author_id": "6761289426729075718",
+      "caption": "",
+      "duration_s": 54.612,
+      "prob_success": 0.0402,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7420797990761172266",
+      "author_id": "6123748",
+      "caption": "",
+      "duration_s": 9.753,
+      "prob_success": 0.7931,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7407783759522614558",
+      "author_id": "6927304760639292422",
+      "caption": "",
+      "duration_s": 131.334,
+      "prob_success": 0.2134,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7404973883645807902",
+      "author_id": "6809065511432684549",
+      "caption": "",
+      "duration_s": 13.932,
+      "prob_success": 0.2337,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7427908576682855722",
+      "author_id": "6995613462094398469",
+      "caption": "",
+      "duration_s": 12.8,
+      "prob_success": 0.3553,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7429022963162303774",
+      "author_id": "6809377609493201926",
+      "caption": "",
+      "duration_s": 19.736,
+      "prob_success": 0.207,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7419720614098783518",
+      "author_id": "6789127435893310469",
+      "caption": "",
+      "duration_s": 7.104,
+      "prob_success": 0.7254,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7424820882876402990",
+      "author_id": "6899192026442974213",
+      "caption": "",
+      "duration_s": 5.247,
+      "prob_success": 0.1536,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7433913128385056031",
+      "author_id": "6929590706865931270",
+      "caption": "",
+      "duration_s": 6.1,
+      "prob_success": 0.8282,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7389260482374389022",
+      "author_id": "6073290",
+      "caption": "",
+      "duration_s": 10.75,
+      "prob_success": 0.9222,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7407075654627347755",
+      "author_id": "6058327",
+      "caption": "",
+      "duration_s": 8.778,
+      "prob_success": 0.4615,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7392279567811071263",
+      "author_id": "6828743784181482501",
+      "caption": "",
+      "duration_s": 18.734,
+      "prob_success": 0.13,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7416888562492230954",
+      "author_id": "6719532410517046277",
+      "caption": "",
+      "duration_s": 73.607,
+      "prob_success": 0.1545,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7410735174423416095",
+      "author_id": "6879059659308073989",
+      "caption": "",
+      "duration_s": 12.001,
+      "prob_success": 0.0135,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7429131696487910686",
+      "author_id": "6792384577051853830",
+      "caption": "",
+      "duration_s": 22.959,
+      "prob_success": 0.1741,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7424827461050961195",
+      "author_id": "6792390971105543173",
+      "caption": "",
+      "duration_s": 41.005,
+      "prob_success": 0.1273,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7407925005905857838",
+      "author_id": "6880673272112808961",
+      "caption": "",
+      "duration_s": 30.001,
+      "prob_success": 0.4383,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7404547304058899742",
+      "author_id": "6844329491658916869",
+      "caption": "",
+      "duration_s": 25.092,
+      "prob_success": 0.6143,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7396725063392742699",
+      "author_id": "1627381",
+      "caption": "",
+      "duration_s": 14.303,
+      "prob_success": 0.1198,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7404294080538135851",
+      "author_id": "6825785733330322437",
+      "caption": "",
+      "duration_s": 18.234,
+      "prob_success": 0.1134,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7393659017043660075",
+      "author_id": "6785264158926504966",
+      "caption": "",
+      "duration_s": 32.467,
+      "prob_success": 0.6508,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7424435788810620202",
+      "author_id": "6654266337433190405",
+      "caption": "",
+      "duration_s": 15.046,
+      "prob_success": 0.1247,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7390284407199845675",
+      "author_id": "7033816596586316847",
+      "caption": "",
+      "duration_s": 15.047,
+      "prob_success": 0.0226,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7414348099138702622",
+      "author_id": "6853049120611222534",
+      "caption": "",
+      "duration_s": 15.046,
+      "prob_success": 0.9892,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7398364225518800159",
+      "author_id": "6924838477097206789",
+      "caption": "",
+      "duration_s": 15.302,
+      "prob_success": 0.8148,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7398655311701101867",
+      "author_id": "6882174607068873733",
+      "caption": "",
+      "duration_s": 7.129,
+      "prob_success": 0.9714,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7432545432233839914",
+      "author_id": "2412142",
+      "caption": "",
+      "duration_s": 22.459,
+      "prob_success": 0.0913,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7395343208026328350",
+      "author_id": "364215",
+      "caption": "",
+      "duration_s": 6.2,
+      "prob_success": 0.3646,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7433877805470911775",
+      "author_id": "7079868950499902510",
+      "caption": "",
+      "duration_s": 6.013,
+      "prob_success": 0.9213,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7409356971020782890",
+      "author_id": "4051954",
+      "caption": "",
+      "duration_s": 24.4,
+      "prob_success": 0.3488,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7418679513028103454",
+      "author_id": "6846036441731089414",
+      "caption": "",
+      "duration_s": 180.047,
+      "prob_success": 0.8868,
+      "verdict": "Post",
+      "true_breakout": 0,
+      "correct": false
+    },
+    {
+      "video_id": "7415803523880766763",
+      "author_id": "6762789747780174854",
+      "caption": "",
+      "duration_s": 7.0,
+      "prob_success": 0.9391,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7424299585222331694",
+      "author_id": "6792726896200139777",
+      "caption": "",
+      "duration_s": 9.519,
+      "prob_success": 0.1134,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7432315075077082411",
+      "author_id": "6791791978276307970",
+      "caption": "",
+      "duration_s": 84.767,
+      "prob_success": 0.3303,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7427830154514287918",
+      "author_id": "6792218528134235142",
+      "caption": "",
+      "duration_s": 20.4,
+      "prob_success": 0.2763,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7428669161468874027",
+      "author_id": "6760853013986264069",
+      "caption": "",
+      "duration_s": 8.939,
+      "prob_success": 0.2295,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7425678484879445294",
+      "author_id": "6706840068571546630",
+      "caption": "",
+      "duration_s": 47.3,
+      "prob_success": 0.0561,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7409290913136168238",
+      "author_id": "6792696734117004293",
+      "caption": "",
+      "duration_s": 12.679,
+      "prob_success": 0.6793,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7434576530593910046",
+      "author_id": "6808281082833945606",
+      "caption": "",
+      "duration_s": 66.634,
+      "prob_success": 0.4047,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7427364800662981930",
+      "author_id": "7069875562332963882",
+      "caption": "",
+      "duration_s": 28.374,
+      "prob_success": 0.5255,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7425848970557000990",
+      "author_id": "6879922543701033989",
+      "caption": "",
+      "duration_s": 13.42,
+      "prob_success": 0.3651,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7401306735996128555",
+      "author_id": "6763111835781858310",
+      "caption": "",
+      "duration_s": 63.864,
+      "prob_success": 0.8568,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7421999609255415086",
+      "author_id": "6754086851118941189",
+      "caption": "",
+      "duration_s": 13.77,
+      "prob_success": 0.2626,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7415059082903702826",
+      "author_id": "6876865114894353413",
+      "caption": "",
+      "duration_s": 35.625,
+      "prob_success": 0.187,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7431276397341052191",
+      "author_id": "6789407319836017669",
+      "caption": "",
+      "duration_s": 28.767,
+      "prob_success": 0.0543,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7413231228406517034",
+      "author_id": "6763253931986404358",
+      "caption": "",
+      "duration_s": 22.196,
+      "prob_success": 0.0771,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7425308483966274846",
+      "author_id": "6342263",
+      "caption": "",
+      "duration_s": 9.821,
+      "prob_success": 0.3911,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7413959163614612767",
+      "author_id": "6986770031481095173",
+      "caption": "",
+      "duration_s": 15.047,
+      "prob_success": 0.9702,
+      "verdict": "Post",
+      "true_breakout": 0,
+      "correct": false
+    },
+    {
+      "video_id": "7417892935284378922",
+      "author_id": "8223756",
+      "caption": "",
+      "duration_s": 6.268,
+      "prob_success": 0.8414,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7415044599476948255",
+      "author_id": "6880168563350144005",
+      "caption": "",
+      "duration_s": 20.386,
+      "prob_success": 0.2557,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7397521996306861358",
+      "author_id": "1303320",
+      "caption": "",
+      "duration_s": 10.734,
+      "prob_success": 0.9806,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7427641747221646622",
+      "author_id": "2033984",
+      "caption": "",
+      "duration_s": 11.309,
+      "prob_success": 0.4753,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7397823873879657758",
+      "author_id": "6907644926089135110",
+      "caption": "",
+      "duration_s": 11.334,
+      "prob_success": 0.6166,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7403876926017785131",
+      "author_id": "6909311449299829765",
+      "caption": "",
+      "duration_s": 77.88,
+      "prob_success": 0.3509,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7393439206611111210",
+      "author_id": "6823112696885019654",
+      "caption": "",
+      "duration_s": 25.103,
+      "prob_success": 0.1551,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7424276134839307562",
+      "author_id": "6930364221566305286",
+      "caption": "",
+      "duration_s": 86.17,
+      "prob_success": 0.341,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7396763861824605482",
+      "author_id": "6995613462094398469",
+      "caption": "",
+      "duration_s": 23.312,
+      "prob_success": 0.8573,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7429341808364145951",
+      "author_id": "7221553226650141739",
+      "caption": "",
+      "duration_s": 14.267,
+      "prob_success": 0.1507,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7412479823521647903",
+      "author_id": "6809375018863068166",
+      "caption": "",
+      "duration_s": 31.767,
+      "prob_success": 0.4598,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7393853386908552479",
+      "author_id": "6879923361435796485",
+      "caption": "",
+      "duration_s": 10.82,
+      "prob_success": 0.2116,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7422827080125107486",
+      "author_id": "6846036441731089414",
+      "caption": "",
+      "duration_s": 130.449,
+      "prob_success": 0.2106,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7394692901252451627",
+      "author_id": "6809131490519483397",
+      "caption": "",
+      "duration_s": 9.357,
+      "prob_success": 0.2124,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7390460770418527518",
+      "author_id": "6807579454702224390",
+      "caption": "",
+      "duration_s": 28.529,
+      "prob_success": 0.9585,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7414877275704872223",
+      "author_id": "6852814290824676358",
+      "caption": "",
+      "duration_s": 6.942,
+      "prob_success": 0.9877,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7433141600420646175",
+      "author_id": "6929590706865931270",
+      "caption": "",
+      "duration_s": 6.134,
+      "prob_success": 0.6652,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7395791148763057451",
+      "author_id": "6930125918976476165",
+      "caption": "",
+      "duration_s": 98.834,
+      "prob_success": 0.3829,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7388546125592136990",
+      "author_id": "6717326768766338054",
+      "caption": "",
+      "duration_s": 33.552,
+      "prob_success": 0.6249,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7421223082817244447",
+      "author_id": "6755268564343063557",
+      "caption": "",
+      "duration_s": 23.534,
+      "prob_success": 0.2183,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7430971638289681706",
+      "author_id": "5828193",
+      "caption": "",
+      "duration_s": 5.247,
+      "prob_success": 0.3355,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7386796760213277998",
+      "author_id": "6755621072223503366",
+      "caption": "",
+      "duration_s": 6.338,
+      "prob_success": 0.9263,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7429717352427621678",
+      "author_id": "6791791978276307970",
+      "caption": "",
+      "duration_s": 25.868,
+      "prob_success": 0.3386,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7432936309594819883",
+      "author_id": "6826426602135766022",
+      "caption": "",
+      "duration_s": 13.5,
+      "prob_success": 0.578,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7384738543618280747",
+      "author_id": "6585099121831936001",
+      "caption": "",
+      "duration_s": 12.12,
+      "prob_success": 0.9957,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7433899175705709855",
+      "author_id": "7125630146635531306",
+      "caption": "",
+      "duration_s": 62.451,
+      "prob_success": 0.2521,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7403751315882462506",
+      "author_id": "6879109873739088902",
+      "caption": "",
+      "duration_s": 66.106,
+      "prob_success": 0.2959,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7412439506974182702",
+      "author_id": "7127845752868652038",
+      "caption": "",
+      "duration_s": 15.0,
+      "prob_success": 0.736,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7385624294799215903",
+      "author_id": "6753978864810984454",
+      "caption": "",
+      "duration_s": 34.467,
+      "prob_success": 0.2703,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7386732388186869035",
+      "author_id": "6843898296094180358",
+      "caption": "",
+      "duration_s": 40.034,
+      "prob_success": 0.1001,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    },
+    {
+      "video_id": "7397835350606875950",
+      "author_id": "6964487680994903045",
+      "caption": "",
+      "duration_s": 57.886,
+      "prob_success": 0.8922,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7426892848450063659",
+      "author_id": "6760453767885243398",
+      "caption": "",
+      "duration_s": 4.034,
+      "prob_success": 0.1653,
+      "verdict": "Unsure",
+      "true_breakout": 0,
+      "correct": null
+    },
+    {
+      "video_id": "7389103335703432479",
+      "author_id": "1765851",
+      "caption": "",
+      "duration_s": 12.05,
+      "prob_success": 0.8702,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7398143006492085547",
+      "author_id": "6823905446043829254",
+      "caption": "",
+      "duration_s": 19.134,
+      "prob_success": 0.1322,
+      "verdict": "Do not post",
+      "true_breakout": 1,
+      "correct": false
+    },
+    {
+      "video_id": "7395721424003992878",
+      "author_id": "6653353213491085318",
+      "caption": "",
+      "duration_s": 52.767,
+      "prob_success": 0.2746,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7434741797559176494",
+      "author_id": "6930899941218321414",
+      "caption": "",
+      "duration_s": 6.134,
+      "prob_success": 0.1921,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7393326741097336110",
+      "author_id": "6926217292763431941",
+      "caption": "",
+      "duration_s": 17.298,
+      "prob_success": 0.8212,
+      "verdict": "Unsure",
+      "true_breakout": 1,
+      "correct": null
+    },
+    {
+      "video_id": "7391858947210120494",
+      "author_id": "6808656142512964614",
+      "caption": "",
+      "duration_s": 6.2,
+      "prob_success": 0.9744,
+      "verdict": "Post",
+      "true_breakout": 1,
+      "correct": true
+    },
+    {
+      "video_id": "7429190928516107562",
+      "author_id": "6851325739478107141",
+      "caption": "",
+      "duration_s": 81.549,
+      "prob_success": 0.0173,
+      "verdict": "Do not post",
+      "true_breakout": 0,
+      "correct": true
+    }
+  ]
+}

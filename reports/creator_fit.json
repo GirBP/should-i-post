@@ -1,0 +1,5 @@
+{
+  "semantic_only (SVD60)": 0.557,
+  "creator_fit_only": 0.544,
+  "semantic + creator_fit": 0.571
+}

@@ -1,0 +1,4 @@
+setting,auc,lift
+best-A,0.5704,
+best-A + content-cluster prior,0.5706,0.0002
+cluster prior ONLY (unsupervised-derived),0.5399,

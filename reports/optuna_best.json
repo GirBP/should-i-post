@@ -1,0 +1,15 @@
+{
+  "n": 40001,
+  "n_trials": 30,
+  "best_loco_auc": 0.5598,
+  "default_loco_auc": 0.5518,
+  "best_params": {
+    "n_estimators": 402,
+    "max_depth": 6,
+    "learning_rate": 0.01219502741029983,
+    "subsample": 0.7126171624067774,
+    "colsample_bytree": 0.83955878476835,
+    "reg_lambda": 6.620243604606745,
+    "min_child_weight": 12
+  }
+}

@@ -1,0 +1,42 @@
+# ShouldIPost? — runtime dependencies (tested on Python 3.14, Apple-Silicon MPS).
+# Everything is local & free (no paid APIs). LightGBM is intentionally omitted
+# (no Python 3.14 wheel); XGBoost + CatBoost + sklearn HistGB cover boosting.
+
+# core
+pandas>=2.2            # tested 3.0.3
+numpy>=1.26             # tested 2.4.6
+scikit-learn>=1.4      # tested 1.9.0  (HGB, CalibratedClassifierCV, GroupKFold, isotonic)
+scipy>=1.11
+joblib>=1.3
+matplotlib>=3.8        # plots
+tabulate>=0.9          # markdown tables in make_report
+
+# data download
+huggingface_hub>=0.23  # tested 1.19.0
+datasets>=2.0
+
+# boosting + tuning
+xgboost>=2.0           # tested 3.2.0
+catboost>=1.2          # tested 1.2.10
+optuna>=3.4            # tested 4.9.0
+shap>=0.44             # optional explanations
+
+# text embeddings (3 encoders) + torch (MPS)
+sentence-transformers>=2.2   # tested 5.6.0  (MiniLM / BGE / e5; pulls torch)
+transformers>=4.40           # tested 5.12.1 (CLAP)
+
+# --- end-to-end video pipeline (webapp "Video → full pipeline" tab) ---
+# audio->transcript, plus a pluggable LLM for summary/topic/emotions.
+faster-whisper>=1.0    # transcript from the video's audio (needs ffmpeg system binary)
+yt-dlp>=2024.8         # fetch a video from a URL
+openai>=1.30           # optional cloud LLM backend (OpenAI-compatible, e.g. DeepSeek) — off by default
+anthropic>=0.34        # optional Haiku LLM backend — off by default
+# Default LLM backend is LOCAL Ollama (no key): brew install ollama && ollama pull llama3.2:3b
+# ffmpeg system binary required: brew install ffmpeg
+# Backend select: SIP_LLM=ollama (default) | gemini | deepseek | haiku | none (transcript-only)
+# Optional cloud keys via env ONLY if used: DEEPSEEK_API_KEY / ANTHROPIC_API_KEY
+
+# --- local web app (webapp/): FastAPI backend + static frontend ---
+fastapi>=0.110
+uvicorn>=0.27
+python-multipart>=0.0.9   # file upload form parsing

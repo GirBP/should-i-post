@@ -1,0 +1,5 @@
+target,model,loco_auc,loco_ci,temporal_auc,brier
+y_breakout_wc,logreg,0.5692,"[0.5666, 0.5719]",0.5736,0.2506
+y_breakout_wc,hgb,0.5805,"[0.5778, 0.583]",0.5713,0.2461
+y_er_wc,logreg,0.6,"[0.5979, 0.6024]",0.614,0.2391
+y_er_wc,hgb,0.6062,"[0.6038, 0.6088]",0.6231,0.2379

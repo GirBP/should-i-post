@@ -1,0 +1,49 @@
+{
+  "n_eligible": 207509,
+  "n_features_examined": 19,
+  "top_positive": [
+    [
+      "word_count",
+      0.0507
+    ],
+    [
+      "question_count",
+      0.0191
+    ],
+    [
+      "caption_len",
+      0.0173
+    ],
+    [
+      "arousal",
+      0.0159
+    ],
+    [
+      "anger",
+      0.0151
+    ]
+  ],
+  "top_negative": [
+    [
+      "duration_s",
+      -0.0103
+    ],
+    [
+      "joy",
+      -0.0092
+    ],
+    [
+      "creator_followers_log",
+      -0.0065
+    ],
+    [
+      "sadness",
+      -0.0018
+    ],
+    [
+      "created_by_ai",
+      -0.0001
+    ]
+  ],
+  "max_abs_offdiag_corr": 0.823
+}

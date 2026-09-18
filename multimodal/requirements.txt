@@ -1,0 +1,14 @@
+# Мультимодальний трек (відео+аудіо+текст), локально на Mac (MPS/CPU).
+# Системно потрібен ffmpeg:  brew install ffmpeg
+yt-dlp>=2024.8
+torch>=2.2            # на Apple Silicon підтягне MPS-бекенд
+torchaudio>=2.2
+open_clip_torch>=2.24 # CLIP ViT-B/32 для кадрів
+sentence-transformers>=2.7  # MiniLM для тексту
+opencv-python-headless>=4.9 # читання кадрів
+librosa>=0.10         # лог-мел аудіо-ознаки
+numpy>=1.26
+pandas>=2.2
+pyarrow>=15
+scikit-learn>=1.4
+tqdm>=4.66
