@@ -528,7 +528,7 @@ md("""
 ### 9.5 Author history as a sequence: a cautionary tale
 
 Recency and momentum over a creator's own past videos appeared to be the strongest pre-publication
-lever, reaching 0.617 in the leaky pre-audit run (documented in reports/AUDIT.md), until the audit
+lever, reaching 0.617 in the leaky pre-audit run, until the audit
 identified the lookahead leak. Under the closed-window fix, author-history and recency add only about
 +0.01, and recency alone is about 0.53, that is, near random. The lesson is that on fast-cadence data it
 is not enough to use only earlier posts; the earlier posts' labels must also have been observable. The
